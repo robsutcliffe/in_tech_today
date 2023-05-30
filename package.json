@@ -8,7 +8,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@vercel/postgres": "^0.3.0",
+    "cheerio": "^1.0.0-rc.12",
     "next": "13.4.3",
+    "p-limit": "^4.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
