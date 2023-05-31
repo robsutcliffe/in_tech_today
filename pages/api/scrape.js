@@ -10,7 +10,12 @@ export default async function handler(req, res) {
 
     try {
         const rawPosts = await getPosts();
-        const newPosts = await rawPosts.filter(checkPostUrl)
+        const newPosts = await rawPosts.reduce(async (filteredPosts, post) => {
+            const isNewPost = await checkPostUrl(post);
+            return !isNewPost ?
+                [...filteredPosts, post] :
+                filteredPosts;
+        }, []);
         const topFivePosts = await newPosts.slice(0, 5);
 
 
@@ -29,7 +34,7 @@ export default async function handler(req, res) {
         const summarisedPosts = await Promise.all(summarisePromise)
 
         await addPosts(summarisedPosts)
-        res.status(200).json({ done: topFivePosts });
+        res.status(200).json({ done: true });
 
     } catch (error) {
         console.error(error);

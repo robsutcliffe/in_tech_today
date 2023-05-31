@@ -5,6 +5,11 @@ export async function getPostsByDate(date: string): Promise<Post[]> {
     return rows;
 }
 
+export async function getLastFivePosts(): Promise<Post[]> {
+    const { rows }: { rows: Post[]} = await sql`SELECT * from POSTS ORDER BY id DESC LIMIT 5`;
+    return rows;
+}
+
 export async function checkPostUrl({href}): Promise<boolean> {
     const { rows }: { rows: Post[]} = await sql`SELECT * from POSTS where href=${href}`;
     return !!rows[0];

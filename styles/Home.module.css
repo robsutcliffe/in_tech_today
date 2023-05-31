@@ -42,7 +42,7 @@
   margin: 1.6rem auto;
   line-height: 1.5;
   font-size: 1.7rem;
-  letter-spacing: .1rem;
+  letter-spacing: .015rem;
 }
 
 .date {
@@ -106,7 +106,7 @@
 .card ul {
   padding-left:1.35rem;
   opacity: 0.8;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .card:hover ul {
@@ -114,7 +114,8 @@
 }
 
 .card ul li {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
+  letter-spacing: .003em;
   line-height: 1.3em;
   padding-bottom: 0.5em;
   list-style-type: circle;

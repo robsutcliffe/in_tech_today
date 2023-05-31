@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { getPostsByDate } from "../services/post.service"
+import { getLastFivePosts } from "../services/post.service"
 
 export async function getStaticProps() {
   const date = new Date().toISOString().split('T')[0];
-  const posts = JSON.stringify(await getPostsByDate(date));
+  const posts = JSON.stringify(await getLastFivePosts());
 
   return {
     props: {
