@@ -18,9 +18,9 @@ export default async function tldrThis(url) {
 
     try {
         const response = await axios.request(options);
-        return response.data.summary;
+        return response.data;
     } catch (error) {
-        throw { error: error.message }
+        return false;
     }
 
 

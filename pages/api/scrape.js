@@ -16,17 +16,20 @@ export default async function handler(req, res) {
 
         const summarisePromise = await topFivePosts.map(post => {
             return limit(async () => {
-                const summary = await tldrThis(post.href);
-                return {
-                    ...post,
-                    summary
+                const { summary } = await tldrThis(post.href);
+                if(summary) {
+                    return {
+                        ...post,
+                        summary
+                    }
                 }
             })
         })
+
         const summarisedPosts = await Promise.all(summarisePromise)
 
         await addPosts(summarisedPosts)
-        res.status(200).json({ done: true });
+        res.status(200).json({ done: topFivePosts });
 
     } catch (error) {
         console.error(error);
