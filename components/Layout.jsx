@@ -6,12 +6,12 @@ export default function Layout({ children }) {
     <>
       <header className="lg:w-112 xl:w-120 relative bg-red-500/95 lg:fixed lg:inset-y-0 lg:left-0 lg:flex lg:items-start lg:overflow-y-auto">
         <div className="hidden lg:sticky lg:top-0 lg:flex lg:w-16 lg:flex-none lg:items-center lg:whitespace-nowrap lg:py-12 lg:text-sm lg:leading-7 lg:[writing-mode:vertical-rl]">
-          <span className="font-mono text-black">Created by</span>
+          <span className="font-mono text-red-200">Created by</span>
           <span className="text-w mt-6 flex gap-6 font-bold">
             {hosts.map((host, hostIndex) => (
               <Fragment key={host}>
                 {hostIndex !== 0 && (
-                  <span aria-hidden="true" className="text-red-900">
+                  <span aria-hidden="true" className="text-red-200">
                     /
                   </span>
                 )}
