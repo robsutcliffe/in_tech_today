@@ -16,7 +16,7 @@ export default async function handler(req, res) {
         newPosts.push(post)
       }
     }
-    const topFivePosts = await newPosts.slice(0, 5)
+    const topFivePosts = newPosts.slice(0, 5)
 
     const summarisePromise = topFivePosts.map((post) => {
       return limit(async () => {
