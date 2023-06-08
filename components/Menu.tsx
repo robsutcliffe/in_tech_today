@@ -1,13 +1,9 @@
-import { AppBar, Toolbar, Typography } from "@mui/material";
-
 export default function Menu() {
   return (
-    <AppBar component="nav">
-      <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Post Summaries
-        </Typography>
-      </Toolbar>
-    </AppBar>
+    <nav className="bg-gray-800">
+      <div className="relative flex h-16 items-center">
+        <p className="text-white leading-6">Post Summaries</p>
+      </div>
+    </nav>
   );
 }

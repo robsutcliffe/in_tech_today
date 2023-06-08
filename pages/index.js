@@ -1,10 +1,9 @@
 import Head from "next/head";
-import Menu from "@components/Menu";
-import PostCard from "@components/PostCard";
+import { PostCard } from "@components";
 import { useState } from "react";
-import { Stack, Container, Box, Button } from "@mui/material";
-import { getPosts } from "@services/post.service";
+import { ArrowDownTrayIcon, ArrowPathIcon } from "@heroicons/react/20/solid";
 
+import { getPosts } from "@services/post.service";
 export async function getServerSideProps() {
   const posts = JSON.stringify(await getPosts(0));
 
@@ -38,30 +37,55 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Box>
-        <Menu />
-        <Container
-          maxWidth="md"
-          sx={{ paddingTop: "86px", paddingBottom: "24px" }}
-        >
-          <Stack spacing={2}>
-            {loadedPosts.map((post) => (
-              <PostCard key={post.id} post={post} />
-            ))}
-            {hasMorePosts && (
-              <Box display="flex" justifyContent="center">
-                <Button
-                  onClick={handleClick}
-                  variant="contained"
+      <div className="pb-12 pt-16 sm:pb-4 lg:pt-12">
+        <div className="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100">
+          {loadedPosts.map((post) => (
+            <PostCard key={post.id} post={post} />
+          ))}
+
+          <div className="text-center">
+            <div className="mt-6">
+              {hasMorePosts && (
+                <button
+                  type="button"
                   disabled={isLoading}
+                  onClick={handleClick}
+                  className="
+                    inline-flex
+                    items-center
+                    rounded-md
+                    bg-gray-800
+                    px-3
+                    py-2
+                    text-sm
+                    font-semibold
+                    text-white
+                    shadow-sm
+                    hover:bg-grey-900
+                    focus-visible:outline
+                    focus-visible:outline-2
+                    focus-visible:outline-offset-2
+                    focus-visible:outline-indigo-600"
                 >
+                  {isLoading && (
+                    <ArrowPathIcon
+                      className="mr-2 h-4 w-4 animate-spin"
+                      aria-hidden="true"
+                    />
+                  )}
+                  {!isLoading && (
+                    <ArrowDownTrayIcon
+                      className="mr-2 h-4 w-4"
+                      aria-hidden="true"
+                    />
+                  )}
                   Load More Posts
-                </Button>
-              </Box>
-            )}
-          </Stack>
-        </Container>
-      </Box>
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

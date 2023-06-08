@@ -1,62 +1,30 @@
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Chip,
-  Divider,
-  Link,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Stack,
-  Typography,
-} from "@mui/material";
-import BoltIcon from "@mui/icons-material/Bolt";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import Link from "next/link";
+import { Container, FormatedDate } from "@components";
 
 export default function PostCard({ post }) {
   return (
-    <Card key={post.id}>
-      <CardContent>
-        <Stack direction="row" justifyContent="space-between">
-          <Typography color="text.secondary" gutterBottom>
-            {post.blog}
-          </Typography>
-          <Stack direction="row" spacing={1}>
-            {post.tags.map((tag, idx) => (
-              <Chip label={tag} key={idx} variant="outlined" size="small" />
+    <article aria-labelledby={`post-${post.id}`} className="py-10 sm:py-12">
+      <Container>
+        <div className="flex flex-col items-start">
+          <FormatedDate
+            date={new Date()}
+            className="order-first font-mono text-sm leading-7 text-slate-500"
+          />
+          <h2
+            id={`episode-${post.id}-title`}
+            className="mt-2 text-lg font-bold text-slate-900"
+          >
+            <Link href={post.href} target="_blank">
+              {post.title}
+            </Link>
+          </h2>
+          <ul className="mt-1 text-base leading-7 text-slate-700">
+            {post.summary.map((point, key) => (
+              <li key={key}>{point}</li>
             ))}
-          </Stack>
-        </Stack>
-        <Typography variant="h5" component="div">
-          {post.title}
-        </Typography>
-        <List>
-          {post.summary.map((item, idx) => (
-            <ListItem key={idx}>
-              <ListItemIcon>
-                <BoltIcon />
-              </ListItemIcon>
-              <ListItemText>{item}</ListItemText>
-            </ListItem>
-          ))}
-        </List>
-      </CardContent>
-      <Divider light />
-      <CardActions>
-        <Button
-          fullWidth
-          component={Link}
-          href={post.href}
-          rel="noopener noreferrer"
-          target="_blank"
-          color="primary"
-        >
-          Read Full Article <ArrowForwardIcon sx={{ fontSize: "16px" }} />
-        </Button>
-      </CardActions>
-    </Card>
+          </ul>
+        </div>
+      </Container>
+    </article>
   );
 }
