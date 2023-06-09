@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { PostCard } from "@components";
+import { PostCard, Button } from "@components";
 import { useState } from "react";
 import { ArrowDownTrayIcon, ArrowPathIcon } from "@heroicons/react/20/solid";
 
@@ -46,41 +46,12 @@ export default function Home(props) {
           <div className="text-center">
             <div className="mt-6">
               {hasMorePosts && (
-                <button
-                  type="button"
+                <Button
                   disabled={isLoading}
                   onClick={handleClick}
-                  className="
-                    inline-flex
-                    items-center
-                    rounded-md
-                    bg-gray-800
-                    px-3
-                    py-2
-                    text-sm
-                    font-semibold
-                    text-white
-                    shadow-sm
-                    hover:bg-grey-900
-                    focus-visible:outline
-                    focus-visible:outline-2
-                    focus-visible:outline-offset-2
-                    focus-visible:outline-indigo-600"
-                >
-                  {isLoading && (
-                    <ArrowPathIcon
-                      className="mr-2 h-4 w-4 animate-spin"
-                      aria-hidden="true"
-                    />
-                  )}
-                  {!isLoading && (
-                    <ArrowDownTrayIcon
-                      className="mr-2 h-4 w-4"
-                      aria-hidden="true"
-                    />
-                  )}
-                  Load More Posts
-                </button>
+                  text="Load More Posts"
+                  Icon={isLoading ? ArrowPathIcon : ArrowDownTrayIcon}
+                />
               )}
             </div>
           </div>

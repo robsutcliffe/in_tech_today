@@ -7,7 +7,7 @@ export default function PostCard({ post }) {
       <Container>
         <div className="flex flex-col items-start">
           <FormatedDate
-            date={new Date()}
+            date={new Date(post.updated_at)}
             className="order-first font-mono text-sm leading-7 text-slate-500"
           />
           <h2
