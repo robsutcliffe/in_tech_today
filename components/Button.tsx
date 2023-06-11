@@ -15,7 +15,7 @@ export default function Button(
     disabled: boolean;
     onClick: () => void;
   },
-  ...props: React.ButtonHTMLAttributes<HTMLButtonElement>[]
+  ...props: ExtendedButtonProps[]
 ) {
   return (
     <button
@@ -24,6 +24,9 @@ export default function Button(
       onClick={onClick}
       className={clsx(
         `
+        group
+        relative
+        isolate
         inline-flex
         items-center
         rounded-md
@@ -38,10 +41,12 @@ export default function Button(
         focus-visible:outline-2
         focus-visible:outline-offset-2
         focus-visible:outline-indigo-600`,
-        disabled ? "bg-gray-400" : "bg-gray-800"
+        disabled ? "bg-gray-500" : "bg-gray-900"
       )}
       {...props}
     >
+      <span className="absolute inset-0 rounded-md bg-gradient-to-b from-white/80 to-white opacity-10 transition-opacity group-hover:opacity-15"></span>
+      <span className="absolute inset-0 rounded-md opacity-7.5 shadow-[inset_0_1px_1px_white] transition-opacity group-hover:opacity-10"></span>
       {Icon && <Icon className="mr-2 h-4 w-4" aria-hidden="true" />}
       {text}
     </button>

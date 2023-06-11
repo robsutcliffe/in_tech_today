@@ -17,6 +17,7 @@
     "clsx": "^1.2.1",
     "next": "13.4.3",
     "p-limit": "^4.0.0",
+    "postcss-focus-visible": "^8.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },

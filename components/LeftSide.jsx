@@ -2,7 +2,7 @@ export default function LeftSide() {
   return (
     <header
       className="
-        bg-slate-50
+        bg-emerald-500
         lg:fixed
         lg:inset-y-0
         lg:left-0
@@ -27,8 +27,12 @@ export default function LeftSide() {
         lg:leading-7
         lg:[writing-mode:vertical-rl]"
       >
-        <span className="font-mono text-slate-500">overline</span>
-        <span className="mt-6 flex gap-6 font-bold text-slate-900"></span>
+        <span className="font-mono text-emerald-100/80">Created By</span>
+        <span className="mt-6 flex gap-6 font-bold text-emerald-900 tracking-wide font-medium">
+          Rob Sutcliffe
+          <span className="text-emerald-100/50">/</span>
+          Firefields Design
+        </span>
       </div>
       <div
         className="
@@ -38,20 +42,19 @@ export default function LeftSide() {
             px-4
             pb-4
             pt-10
+            bg-gray-800
             sm:px-6
             md:max-w-2xl
             md:px-4
             lg:min-h-full
             lg:flex-auto
-            lg:border-x
-            lg:border-slate-200
             lg:px-8
             lg:py-12
             xl:px-12"
       >
         <div className="mt-10 text-center lg:mt-12 lg:text-left">
-          <p className="mt-3 text-lg font-medium leading-8 text-slate-700">
-            Somekind of sub heading coming soon.
+          <p className="mt-3 text-lg font-medium leading-8 text-slate-100">
+            Summaries of current trending tech posts
           </p>
         </div>
       </div>

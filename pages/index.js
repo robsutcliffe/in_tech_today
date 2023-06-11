@@ -43,18 +43,18 @@ export default function Home(props) {
             <PostCard key={post.id} post={post} />
           ))}
 
-          <div className="text-center">
-            <div className="mt-6">
-              {hasMorePosts && (
+          {hasMorePosts && (
+            <div className="text-center">
+              <div className="py-6 lg:max-w-4xl">
                 <Button
                   disabled={isLoading}
                   onClick={handleClick}
                   text="Load More Posts"
                   Icon={isLoading ? ArrowPathIcon : ArrowDownTrayIcon}
                 />
-              )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </>

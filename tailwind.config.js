@@ -15,6 +15,11 @@ module.exports = {
         112: "28rem",
         120: "30rem",
       },
+      opacity: {
+        2.5: "0.025",
+        7.5: "0.075",
+        15: "0.15",
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],
