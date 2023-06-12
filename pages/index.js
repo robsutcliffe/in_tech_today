@@ -37,25 +37,23 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="pb-12 pt-16 sm:pb-4 lg:pt-12">
-        <div className="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100">
-          {loadedPosts.map((post) => (
-            <PostCard key={post.id} post={post} />
-          ))}
+      <div className="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100">
+        {loadedPosts.map((post) => (
+          <PostCard key={post.id} post={post} />
+        ))}
 
-          {hasMorePosts && (
-            <div className="text-center">
-              <div className="py-6 lg:max-w-4xl">
-                <Button
-                  disabled={isLoading}
-                  onClick={handleClick}
-                  text="Load More Posts"
-                  Icon={isLoading ? ArrowPathIcon : ArrowDownTrayIcon}
-                />
-              </div>
+        {hasMorePosts && (
+          <div className="text-center">
+            <div className="py-6 lg:max-w-4xl">
+              <Button
+                disabled={isLoading}
+                onClick={handleClick}
+                text="Load More Posts"
+                Icon={isLoading ? ArrowPathIcon : ArrowDownTrayIcon}
+              />
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </>
   );

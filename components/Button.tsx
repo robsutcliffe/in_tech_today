@@ -3,20 +3,19 @@ import clsx from "clsx";
 
 type ExtendedButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
-export default function Button(
-  {
-    text,
-    Icon,
-    disabled,
-    onClick,
-  }: {
-    text: string;
-    Icon: any;
-    disabled: boolean;
-    onClick: () => void;
-  },
-  ...props: ExtendedButtonProps[]
-) {
+type ButtonProps = {
+  text: string;
+  Icon?: React.ComponentType<any>;
+  disabled?: boolean;
+  onClick?: () => void;
+} & ExtendedButtonProps;
+export default function Button({
+  text,
+  Icon,
+  disabled,
+  onClick,
+  ...props
+}: ButtonProps) {
   return (
     <button
       type="button"
@@ -40,7 +39,7 @@ export default function Button(
         focus-visible:outline
         focus-visible:outline-2
         focus-visible:outline-offset-2
-        focus-visible:outline-indigo-600`,
+        focus-visible:outline-white`,
         disabled ? "bg-gray-500" : "bg-gray-900"
       )}
       {...props}
