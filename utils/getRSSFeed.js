@@ -39,7 +39,7 @@ export default async function getRSSFeed() {
           title: item.title,
           href: item.link,
           // post: item["content:encodedSnippet"],
-          tags: ["Must Read"],
+          tags: [],
         });
       }
     }

@@ -19,6 +19,7 @@ export default async function tldrThis(url) {
     const response = await axios.request(options);
     return response.data;
   } catch (error) {
+    console.log(error);
     return false;
   }
 }

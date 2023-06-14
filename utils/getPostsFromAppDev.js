@@ -1,23 +1,15 @@
+const puppeteer = require("puppeteer");
 import axios from "axios";
 import cheerio from "cheerio";
 export default async function getPostsFromAppDev() {
-  const options = {
-    method: "GET",
-    url: "https://scrapingbee.p.rapidapi.com/",
-    params: {
-      url: "https://app.daily.dev/discussed",
-      render_js: "true",
-    },
-    headers: {
-      "X-RapidAPI-Key": process.env.RAPID_API_KEY,
-      "X-RapidAPI-Host": "scrapingbee.p.rapidapi.com",
-    },
-  };
-
   try {
-    const response = await axios.request(options);
+    const browser = await puppeteer.launch({ headless: "new" });
+    const page = await browser.newPage();
+    await page.goto("https://app.daily.dev/discussed");
+    await new Promise((r) => setTimeout(r, 1000));
+    const html = await page.content();
 
-    const $ = cheerio.load(response.data);
+    const $ = cheerio.load(html);
 
     const postRow = $("article");
     const posts = [];

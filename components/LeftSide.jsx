@@ -72,7 +72,7 @@ export default function LeftSide() {
             xl:px-12"
       >
         <div className="mt-10 text-center lg:mt-12 lg:text-left">
-          <div className="border-2 max-h-64 border-dotted border-white/20 rounded-full m-12 pl-8 pb-8 pt-4 pr-4 text-white/30">
+          <div className="border-2 max-h-64 mx-auto aspect-square border-dotted border-white/20 rounded-full m-12 pl-8 pb-8 pt-4 pr-4 text-white/30">
             <RssIcon />
           </div>
           <p className="mt-3 text-lg font-medium leading-8 italic text-gray-200">

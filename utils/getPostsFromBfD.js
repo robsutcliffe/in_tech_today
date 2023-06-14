@@ -1,4 +1,4 @@
-import axios from "axios";
+const puppeteer = require("puppeteer");
 import cheerio from "cheerio";
 const includeTags = [
   "javascript",
@@ -12,24 +12,15 @@ const includeTags = [
   "engineering management",
 ];
 
-export default async function getPosts() {
-  const options = {
-    method: "GET",
-    url: "https://scrapingbee.p.rapidapi.com/",
-    params: {
-      url: "https://bloggingfordevs.com/trends/",
-      render_js: "true",
-    },
-    headers: {
-      "X-RapidAPI-Key": process.env.RAPID_API_KEY,
-      "X-RapidAPI-Host": "scrapingbee.p.rapidapi.com",
-    },
-  };
-
+export default async function getPostsFromBfD() {
   try {
-    const response = await axios.request(options);
+    const browser = await puppeteer.launch({ headless: "new" });
+    const page = await browser.newPage();
+    await page.goto("https://bloggingfordevs.com/trends/");
+    await page.waitForSelector("#blog-rank-0", { visible: true });
+    const html = await page.content();
 
-    const $ = cheerio.load(response.data);
+    const $ = cheerio.load(html);
 
     const postRow = $("div[id^='blog-rank-']");
     const posts = [];
