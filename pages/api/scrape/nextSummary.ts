@@ -21,7 +21,7 @@ export default async function handler(req, res) {
     if (!post) {
       res.status(200).json({ noPostsToSummarise: true });
     } else {
-      const { html, description } = await getBlogPost(post.href);
+      const { html } = await getBlogPost(post.href);
       const nextPost = { ...post, summary: [], tags: [] };
 
       if (isMostlyEnglish(html) && html.length < 35000) {
@@ -44,6 +44,7 @@ export default async function handler(req, res) {
         nextPost.tags = await Promise.all(
           nextPost.tags.map((newTag) => getTagId({ newTag }))
         );
+
         removeHoldingPost(post.href);
         await addPosts([nextPost]);
         res.status(200).json({ nextPost });

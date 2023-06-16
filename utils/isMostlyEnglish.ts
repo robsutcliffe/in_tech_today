@@ -7,6 +7,5 @@ export default function isMostlyEnglish(str) {
     }
   }
   const englishPercentage = (englishCount / str.length) * 100;
-  console.log({ englishPercentage });
   return englishPercentage >= 60;
 }
