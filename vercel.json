@@ -1,12 +1,19 @@
 {
   "crons": [
     {
-      "path": "/api/scrape",
-      "schedule": "0 5 * * *"
+      "path": "/api/scrape/newHrefs",
+      "schedule": "0 4 * * *"
+    },
+    {
+      "path": "/api/scrape/nextSummary",
+      "schedule": "*/5 5-6 * * *"
     }
   ],
   "functions": {
-    "pages/api/scrape.js": {
+    "pages/api/scrape/newHrefs.ts": {
+      "maxDuration": 60
+    },
+    "pages/api/scrape/nextSummary.ts": {
       "maxDuration": 60
     }
   }

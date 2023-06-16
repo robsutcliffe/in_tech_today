@@ -30,7 +30,7 @@ export async function addPosts(posts: Post[]) {
   for (const post of posts) {
     if (isValidPost(post)) {
       await sql`
-                INSERT INTO
+        INSERT INTO
                     posts (tags, blog, href, title, summary, created_at, updated_at)
                 VALUES (${JSON.stringify(post.tags)}, ${post.blog}, ${
         post.href

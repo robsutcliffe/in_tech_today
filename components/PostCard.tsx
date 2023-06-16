@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { Container } from "@components";
-import { SparklesIcon } from "@heroicons/react/24/solid";
+import {
+  SparklesIcon,
+  ArrowTopRightOnSquareIcon,
+} from "@heroicons/react/24/solid";
 
 function isToday(date) {
   const date1 = new Date(date);
@@ -64,7 +67,7 @@ export default function PostCard({ post }) {
           </div>
           <h2
             id={`episode-${post.id}-title`}
-            className="mb-2 text-lg font-bold text-slate-900"
+            className="mb-2 text-lg font-bold text-slate-900 hover:text-emerald-600"
           >
             <Link href={post.href} target="_blank">
               {post.title}
@@ -73,11 +76,45 @@ export default function PostCard({ post }) {
           <ul className="mt-1 text-base leading-7 text-slate-700">
             {post.summary.map((point, key) => (
               <li key={key} className="mb-2">
-                <SparklesIcon className="w-8 h-8 -ml-7 -mt-2 text-emerald-400 flex-shrink-0 absolute border-2 border-dotted border-emerald-100 rounded-full p-1 -z-10" />
+                <SparklesIcon
+                  className="
+                  w-8
+                  h-8
+                  -ml-7
+                  -mt-2
+                  text-emerald-400
+                  flex-shrink-0
+                  absolute
+                  border-2
+                  border-dotted
+                  border-emerald-100
+                  rounded-full
+                  p-1 -
+                  z-10"
+                />
                 {point}
               </li>
             ))}
           </ul>
+          <div className="mt-4 flex items-center gap-4">
+            <a
+              href={post.href}
+              target="_blank"
+              className="
+                flex
+                items-center
+                text-sm
+                font-bold
+                leading-6
+                text-emerald-500
+                hover:text-emerald-700
+                active:text-emerald-900
+                cursor-pointer"
+            >
+              Read Article
+              <ArrowTopRightOnSquareIcon className="h-4 w-4 ml-1 -mt-0.5" />
+            </a>
+          </div>
         </div>
       </Container>
     </article>

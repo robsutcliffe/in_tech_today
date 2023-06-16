@@ -66,6 +66,10 @@ export default async function handler(req, res) {
               .map((l) => removeFirstHyphen(l.trim()))
               .filter((l) => l);
 
+            if (!post.summary[1]) {
+              post.summary = post.summary[0].split(". ");
+            }
+
             if (!post.tags[0]) {
               post.tags = parts
                 .slice(1, -1)
