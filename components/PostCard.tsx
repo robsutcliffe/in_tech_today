@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Container } from "@components";
+import { Container, BulletPoints } from "@components";
 import {
   SparklesIcon,
   ArrowTopRightOnSquareIcon,
@@ -15,7 +15,7 @@ function isToday(date) {
   );
 }
 
-export default function PostCard({ post }) {
+export default function PostCard({ post, searchTerm }) {
   const isNew = isToday(post.created_at);
 
   return (
@@ -73,29 +73,7 @@ export default function PostCard({ post }) {
               {post.title}
             </Link>
           </h2>
-          <ul className="mt-1 text-base leading-7 text-slate-700">
-            {post.summary.map((point, key) => (
-              <li key={key} className="mb-2">
-                <SparklesIcon
-                  className="
-                  w-8
-                  h-8
-                  -ml-7
-                  -mt-2
-                  text-emerald-400
-                  flex-shrink-0
-                  absolute
-                  border-2
-                  border-dotted
-                  border-emerald-100
-                  rounded-full
-                  p-1 -
-                  z-10"
-                />
-                {point}
-              </li>
-            ))}
-          </ul>
+          <BulletPoints points={post.summary} searchTerm={searchTerm} />
           <div className="mt-4 flex items-center gap-4">
             <a
               href={post.href}

@@ -19,8 +19,7 @@ export async function searchPosts(
           href,
           summary,
           created_at,
-          array_agg(t.name) AS tags,
-          strpos(LOWER(summary::text), LOWER(${searchTerm})) AS summaryPossition
+          array_agg(t.name) AS tags
         FROM posts p
           JOIN tags t
             ON t.id = ANY(p.tags)

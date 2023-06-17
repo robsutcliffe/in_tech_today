@@ -55,8 +55,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100 lg:max-w-4xl lg:px-8">
-        <div>
+      <div className="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100">
+        <div className="lg:max-w-4xl lg:px-8">
           <label
             htmlFor="account-number"
             className="block text-sm font-medium leading-6 text-gray-900"
@@ -68,7 +68,23 @@ export default function Home() {
               type="text"
               name="account-number"
               id="account-number"
-              className="px-2 block w-full rounded-md border-0 py-1.5 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="
+                px-2
+                block
+                w-full
+                rounded-md
+                border-0
+                py-1.5
+                pr-10
+                text-gray-900
+                ring-1
+                ring-inset
+                ring-gray-300
+                placeholder:text-gray-400
+                focus:ring-2
+                focus:ring-inset
+                focus:ring-indigo-600
+                sm:text-sm sm:leading-6"
               placeholder="Search"
               value={searchTerm}
               onChange={handleSearchChange}
@@ -83,7 +99,7 @@ export default function Home() {
         </div>
 
         {loadedPosts.map((post) => (
-          <PostCard key={post.id} post={post} />
+          <PostCard key={post.id} post={post} searchTerm={searchTerm} />
         ))}
 
         {hasMorePosts && (

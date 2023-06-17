@@ -1,6 +1,7 @@
 import { getPosts, searchPosts } from "@services/post.service";
 import { NextApiRequest, NextApiResponse } from "next";
 import { Post } from "@models/post.model";
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
