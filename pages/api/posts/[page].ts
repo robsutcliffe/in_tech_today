@@ -10,6 +10,7 @@ export default async function handler(
     page: string;
     searchTerm: string;
   };
+  res.setHeader("Cache-Control", "s-maxage=86400,stale-while-revalidate=59");
   if (searchTerm) {
     const posts: Post[] = await searchPosts(parseInt(page), searchTerm);
     res.status(200).json({ posts });
