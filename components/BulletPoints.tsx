@@ -21,7 +21,7 @@ export default function BulletPoints({ points, searchTerm }) {
                   border-emerald-100
                   rounded-full
                   p-1 -
-                  z-10"
+                  -z-10"
           />
           <span
             dangerouslySetInnerHTML={{

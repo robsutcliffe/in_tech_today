@@ -1,26 +1,33 @@
 import Head from "next/head";
-import { PostCard, Button } from "@components";
+import { PostCard } from "@components";
 import { useState, useEffect } from "react";
+import { useQueryState } from "next-usequerystate";
+import { useInView } from "react-intersection-observer";
 import axios from "axios";
-import {
-  ArrowDownTrayIcon,
-  ArrowPathIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/20/solid";
+import { motion, AnimatePresence } from "framer-motion";
+import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
 export default function Home() {
+  const [bottomRef, inView] = useInView();
   const [loadedPosts, setLoadedPosts] = useState([]);
   const [page, setPage] = useState(0);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useQueryState("search");
   const [isLoading, setIsLoading] = useState(false);
   const [hasMorePosts, setHasMorePosts] = useState(true);
 
   useEffect(() => {
     const searchRequest = axios.CancelToken.source();
 
+    // setting it to null to remove from the url
+    if (!searchTerm) {
+      setSearchTerm(null);
+    }
     setTimeout(() => {
+      let url = `/api/posts/${page}`;
+      if (searchTerm) url += `?searchTerm=${searchTerm}`;
+
       setIsLoading(true);
-      axios(`/api/posts/${page}?searchTerm=${searchTerm}`, {
+      axios(url, {
         cancelToken: searchRequest.token,
       })
         .then((response) => {
@@ -38,9 +45,11 @@ export default function Home() {
     };
   }, [searchTerm, page]);
 
-  const getMorePosts = async () => {
-    setPage((prevPage) => prevPage + 1);
-  };
+  useEffect(() => {
+    if (!isLoading && inView && hasMorePosts && loadedPosts.length) {
+      setPage((prevPage) => prevPage + 1);
+    }
+  }, [inView]);
 
   const handleSearchChange = async (e) => {
     setPage(0);
@@ -57,12 +66,6 @@ export default function Home() {
 
       <div className="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100">
         <div className="lg:max-w-4xl lg:px-8">
-          <label
-            htmlFor="account-number"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
-            Search
-          </label>
           <div className="relative mt-2 rounded-md shadow-sm">
             <input
               type="text"
@@ -98,20 +101,40 @@ export default function Home() {
           </div>
         </div>
 
-        {loadedPosts.map((post) => (
-          <PostCard key={post.id} post={post} searchTerm={searchTerm} />
-        ))}
+        <AnimatePresence mode="wait">
+          {loadedPosts.map((post, postIdx) => (
+            <motion.div
+              key={post.id}
+              initial={{ opacity: 0, y: 200, scale: 0.9 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                transition: {
+                  type: "spring",
+                  mass: 0.5,
+                  stiffness: 50,
+                  duration: 0.2,
+                  delay: 0.1 * (postIdx % 5),
+                  ease: "easeOut",
+                },
+              }}
+              exit={{
+                opacity: 0,
+                transition: { duration: 0.05 },
+              }}
+            >
+              <PostCard post={post} searchTerm={searchTerm} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
 
         {hasMorePosts && (
-          <div className="text-center">
-            <div className="py-6 lg:max-w-4xl">
-              <Button
-                disabled={isLoading}
-                onClick={getMorePosts}
-                text="Load More Posts"
-                Icon={isLoading ? ArrowPathIcon : ArrowDownTrayIcon}
-              />
-            </div>
+          <div
+            ref={bottomRef}
+            className="my-12 w-full text-gray-700 text-center animate-pulse"
+          >
+            loading more...
           </div>
         )}
       </div>

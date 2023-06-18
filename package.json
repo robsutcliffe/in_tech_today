@@ -16,8 +16,10 @@
     "axios": "^1.4.0",
     "cheerio": "^1.0.0-rc.12",
     "clsx": "^1.2.1",
+    "framer-motion": "^10.12.16",
     "jsdom": "^22.1.0",
     "next": "13.4.3",
+    "next-usequerystate": "^1.7.3",
     "node-readability": "^3.0.0",
     "openai": "^3.3.0",
     "p-limit": "^4.0.0",
@@ -25,6 +27,7 @@
     "puppeteer": "^20.7.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-intersection-observer": "^9.5.0",
     "rss-parser": "^3.13.0"
   },
   "devDependencies": {

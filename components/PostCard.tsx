@@ -1,10 +1,7 @@
 import Link from "next/link";
 import { Container, BulletPoints } from "@components";
-import {
-  SparklesIcon,
-  ArrowTopRightOnSquareIcon,
-} from "@heroicons/react/24/solid";
-
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
+import clsx from "clsx";
 function isToday(date) {
   const date1 = new Date(date);
   const date2 = new Date();
@@ -29,7 +26,8 @@ export default function PostCard({ post, searchTerm }) {
             {post.tags.map((tag, key) => (
               <span
                 key={key}
-                className="
+                className={clsx(
+                  `
                   inline-flex
                   items-center
                   rounded-md
@@ -37,10 +35,13 @@ export default function PostCard({ post, searchTerm }) {
                   py-1
                   text-xs
                   font-medium
-                  text-gray-600
                   ring-1
                   ring-inset
-                  ring-gray-500/10"
+                  `,
+                  searchTerm?.toLowerCase() === tag.toLowerCase()
+                    ? "bg-emerald-100 ring-emerald-300 text-emerald-800"
+                    : "text-gray-600 ring-gray-500/10"
+                )}
               >
                 {tag}
               </span>
