@@ -1,11 +1,10 @@
 import Head from "next/head";
 import { PostCard } from "@components";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useQueryState } from "next-usequerystate";
-import { useInView } from "react-intersection-observer";
 import axios from "axios";
 import useSWR from "swr";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
 export default function Home() {
@@ -13,7 +12,8 @@ export default function Home() {
     "/api/posts/0",
     async (url) => await axios.get(url).then((res) => res.data)
   );
-  const [bottomRef, inView] = useInView();
+  const bottomRef = useRef(null);
+  const inView = useInView(bottomRef);
   const [loadedPosts, setLoadedPosts] = useState([]);
   const [page, setPage] = useState(0);
   const [searchTerm, setSearchTerm] = useQueryState("search");
@@ -29,10 +29,6 @@ export default function Home() {
   useEffect(() => {
     const searchRequest = axios.CancelToken.source();
 
-    // setting it to null to remove from the url
-    if (!searchTerm) {
-      setSearchTerm(null);
-    }
     setTimeout(() => {
       let url = `/api/posts/${page}`;
       if (searchTerm) url += `?searchTerm=${searchTerm}`;
@@ -55,6 +51,12 @@ export default function Home() {
       setIsLoading(false);
     };
   }, [searchTerm, page]);
+
+  useEffect(() => {
+    if (!searchTerm) {
+      setSearchTerm(null);
+    }
+  }, [searchTerm]);
 
   useEffect(() => {
     if (!isLoading && inView && hasMorePosts && loadedPosts?.length) {
@@ -100,7 +102,7 @@ export default function Home() {
                 focus:ring-indigo-600
                 sm:text-sm sm:leading-6"
               placeholder="Search"
-              value={searchTerm}
+              value={searchTerm || ""}
               onChange={handleSearchChange}
             />
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
@@ -116,7 +118,7 @@ export default function Home() {
           {loadedPosts?.map((post, postIdx) => (
             <motion.div
               key={post.href}
-              initial={{ opacity: 0, y: 200, scale: 0.9 }}
+              initial={{ opacity: 0, y: 100, scale: 0.97 }}
               animate={{
                 opacity: 1,
                 y: 0,
@@ -125,8 +127,8 @@ export default function Home() {
                   type: "spring",
                   mass: 0.5,
                   stiffness: 50,
-                  duration: 0.2,
-                  delay: 0.1 * (postIdx % 5),
+                  duration: 0.15,
+                  delay: 0.15 * (postIdx % 5),
                   ease: "easeOut",
                 },
               }}
