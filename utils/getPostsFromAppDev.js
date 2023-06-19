@@ -26,7 +26,7 @@ export default async function getPostsFromAppDev() {
       }
     }
 
-    return posts.slice(0, 3);
+    return posts.slice(0, 5);
   } catch (error) {
     throw { error: error.message };
   }
