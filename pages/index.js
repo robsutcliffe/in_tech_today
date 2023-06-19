@@ -4,16 +4,27 @@ import { useState, useEffect } from "react";
 import { useQueryState } from "next-usequerystate";
 import { useInView } from "react-intersection-observer";
 import axios from "axios";
+import useSWR from "swr";
 import { motion, AnimatePresence } from "framer-motion";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
 export default function Home() {
+  const { initialData } = useSWR(
+    "/api/posts/0",
+    async (url) => await axios.get(url).then((res) => res.data)
+  );
   const [bottomRef, inView] = useInView();
   const [loadedPosts, setLoadedPosts] = useState([]);
   const [page, setPage] = useState(0);
   const [searchTerm, setSearchTerm] = useQueryState("search");
   const [isLoading, setIsLoading] = useState(false);
   const [hasMorePosts, setHasMorePosts] = useState(true);
+
+  useEffect(() => {
+    if (initialData?.posts) {
+      setLoadedPosts((prev) => [...initialData.posts, ...prev]);
+    }
+  }, [initialData]);
 
   useEffect(() => {
     const searchRequest = axios.CancelToken.source();
@@ -46,7 +57,7 @@ export default function Home() {
   }, [searchTerm, page]);
 
   useEffect(() => {
-    if (!isLoading && inView && hasMorePosts && loadedPosts.length) {
+    if (!isLoading && inView && hasMorePosts && loadedPosts?.length) {
       setPage((prevPage) => prevPage + 1);
     }
   }, [inView]);
@@ -101,10 +112,10 @@ export default function Home() {
           </div>
         </div>
 
-        <AnimatePresence mode="wait">
-          {loadedPosts.map((post, postIdx) => (
+        <AnimatePresence>
+          {loadedPosts?.map((post, postIdx) => (
             <motion.div
-              key={post.id}
+              key={post.href}
               initial={{ opacity: 0, y: 200, scale: 0.9 }}
               animate={{
                 opacity: 1,

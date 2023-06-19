@@ -23,11 +23,13 @@ export default function PostCard({ post, searchTerm }) {
             <h3 className="font-mono text-sm grow leading-7 text-slate-500">
               {post.blog}
             </h3>
-            {post.tags.map((tag, key) => (
-              <span
-                key={key}
-                className={clsx(
-                  `
+            {post.tags.map(
+              (tag, key) =>
+                tag && (
+                  <span
+                    key={`${post.id}-${key}`}
+                    className={clsx(
+                      `
                   inline-flex
                   items-center
                   rounded-md
@@ -38,14 +40,15 @@ export default function PostCard({ post, searchTerm }) {
                   ring-1
                   ring-inset
                   `,
-                  searchTerm?.toLowerCase() === tag.toLowerCase()
-                    ? "bg-emerald-100 ring-emerald-300 text-emerald-800"
-                    : "text-gray-600 ring-gray-500/10"
-                )}
-              >
-                {tag}
-              </span>
-            ))}
+                      searchTerm?.toLowerCase() === tag?.toLowerCase()
+                        ? "bg-emerald-100 ring-emerald-300 text-emerald-800"
+                        : "text-gray-600 ring-gray-500/10"
+                    )}
+                  >
+                    {tag}
+                  </span>
+                )
+            )}
             {isNew && (
               <span
                 className="

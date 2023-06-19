@@ -22,9 +22,8 @@ export async function searchPosts(
           array_agg(t.name) AS tags
         FROM posts p
           LEFT JOIN tags t
-            ON t.id = ANY(p.tags)
-        WHERE t.approved = true
-          AND similarity(summary::text, ${searchTerm}) * length(summary::text) / length(${searchTerm}) > 1
+            ON t.id = ANY(p.tags) AND t.approved = true
+        WHERE similarity(summary::text, ${searchTerm}) * length(summary::text) / length(${searchTerm}) > 1
           OR similarity(t.name, ${searchTerm}) > 0.3
         GROUP BY p.id, summary
         ORDER BY
@@ -41,8 +40,7 @@ export async function getPosts(page: number = 0): Promise<Post[]> {
   const { rows }: { rows: Post[] } = await sql`
         SELECT blog, title, href, summary, created_at, array_agg(t.name) AS tags  
         FROM posts p
-        LEFT JOIN tags t ON t.id = ANY(p.tags)
-        WHERE t.approved = true
+        LEFT JOIN tags t ON t.id = ANY(p.tags) AND t.approved = true
         GROUP BY p.id
         ORDER BY p.id DESC 
         LIMIT 5 
