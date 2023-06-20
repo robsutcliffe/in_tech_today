@@ -3,15 +3,10 @@ import { PostCard } from "@components";
 import { useState, useEffect, useRef } from "react";
 import { useQueryState } from "next-usequerystate";
 import axios from "axios";
-import useSWR from "swr";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
 export default function Home() {
-  const { initialData } = useSWR(
-    "/api/posts/0",
-    async (url) => await axios.get(url).then((res) => res.data)
-  );
   const bottomRef = useRef(null);
   const inView = useInView(bottomRef);
   const [loadedPosts, setLoadedPosts] = useState([]);
@@ -19,12 +14,6 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useQueryState("search");
   const [isLoading, setIsLoading] = useState(false);
   const [hasMorePosts, setHasMorePosts] = useState(true);
-
-  useEffect(() => {
-    if (initialData?.posts) {
-      setLoadedPosts((prev) => [...initialData.posts, ...prev]);
-    }
-  }, [initialData]);
 
   useEffect(() => {
     const searchRequest = axios.CancelToken.source();
