@@ -13,12 +13,12 @@ export default function BulletPoints({ points, searchTerm }) {
                   h-8
                   -ml-7
                   -mt-2
-                  text-emerald-400
+                  text-yellow-400
                   flex-shrink-0
                   absolute
                   border-2
                   border-dotted
-                  border-emerald-100
+                  border-yellow-300
                   rounded-full
                   p-1 -
                   -z-10"
@@ -27,7 +27,8 @@ export default function BulletPoints({ points, searchTerm }) {
             dangerouslySetInnerHTML={{
               __html: point.replace(
                 regex,
-                (match) => `<span style="background:#d1fae4;">${match}</span>`
+                (match) =>
+                  `<span style="background:#fef08a;color:#000;">${match}</span>`
               ),
             }}
           />

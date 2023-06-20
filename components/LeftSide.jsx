@@ -19,7 +19,7 @@ export default function LeftSide() {
   return (
     <header
       className="
-        bg-emerald-500
+        bg-yellow-400
         lg:fixed
         lg:inset-y-0
         lg:left-0
@@ -46,10 +46,10 @@ export default function LeftSide() {
         href="https://www.linkedin.com/in/robsutcliffe/"
         target="_blank"
       >
-        <span className="font-mono text-emerald-100/80">Created By</span>
-        <span className="mt-6 flex gap-6 font-bold text-emerald-900 tracking-wide font-medium">
+        <span className="font-mono text-black/80">Created By</span>
+        <span className="mt-6 flex gap-6 text-black tracking-wider font-bold ">
           Rob Sutcliffe
-          <span className="text-emerald-100/50">/</span>
+          <span className="text-black/80">/</span>
           Firefields Design
         </span>
       </a>
@@ -61,7 +61,7 @@ export default function LeftSide() {
             px-4
             pb-4
             pt-10
-            bg-gray-800
+            bg-black
             sm:px-6
             md:max-w-2xl
             md:px-4

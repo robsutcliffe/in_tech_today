@@ -41,7 +41,7 @@ export default function PostCard({ post, searchTerm }) {
                   ring-inset
                   `,
                       searchTerm?.toLowerCase() === tag?.toLowerCase()
-                        ? "bg-emerald-100 ring-emerald-300 text-emerald-800"
+                        ? "bg-yellow-200 ring-yellow-400 text-black"
                         : "text-gray-600 ring-gray-500/10"
                     )}
                   >
@@ -53,17 +53,17 @@ export default function PostCard({ post, searchTerm }) {
               <span
                 className="
                   inline-flex
-                  bg-emerald-100
+                  bg-yellow-200
                   items-center
                   rounded-md
                   px-2
                   py-1
                   text-xs
                   font-medium
-                  text-emerald-800
+                  text-black
                   ring-1
                   ring-inset
-                  ring-emerald-300"
+                  ring-yellow-300"
               >
                 New
               </span>
@@ -71,7 +71,7 @@ export default function PostCard({ post, searchTerm }) {
           </div>
           <h2
             id={`episode-${post.id}-title`}
-            className="mb-2 text-lg font-bold text-slate-900 hover:text-emerald-600"
+            className="mb-2 text-lg font-bold text-slate-900 hover:text-blue-500"
           >
             <Link href={post.href} target="_blank">
               {post.title}
@@ -88,12 +88,13 @@ export default function PostCard({ post, searchTerm }) {
                 text-sm
                 font-bold
                 leading-6
-                text-emerald-500
-                hover:text-emerald-700
-                active:text-emerald-900
+                text-black
+                underline
+                hover:text-blue-700
+                active:text-blue-900
                 cursor-pointer"
             >
-              Read Article
+              READ FULL ARTICLE
               <ArrowTopRightOnSquareIcon className="h-4 w-4 ml-1 -mt-0.5" />
             </a>
           </div>
