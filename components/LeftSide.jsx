@@ -80,8 +80,8 @@ export default function LeftSide() {
           </div>
           <p className="mt-3 text-lg font-medium leading-8 text-gray-200">
             This app takes blog posts from several sources and summaries them
-            using open AI to help you guage which articles you should invest
-            your precios time on. next.
+            using Open AI to help you gauge which articles you should invest
+            your precious time on next.
           </p>
           <div className="w-full mt-8 flex">
             <Button text="Fork Me!" onClick={openGitHub} Icon={Icon} />
