@@ -71,7 +71,7 @@ export default function PostCard({ post, searchTerm }) {
           </div>
           <h2
             id={`episode-${post.id}-title`}
-            className="mb-2 text-lg font-bold text-slate-900 hover:text-blue-500"
+            className="mb-2 text-lg font-bold text-slate-900 hover:text-yellow-500"
           >
             <Link href={post.href} target="_blank">
               {post.title}
@@ -88,9 +88,9 @@ export default function PostCard({ post, searchTerm }) {
                 text-sm
                 font-bold
                 leading-6
-                text-blue-500
-                hover:text-blue-700
-                active:text-blue-900
+                text-black
+                hover:text-yellow-500
+                active:text-yellow-500
                 cursor-pointer"
             >
               READ FULL ARTICLE

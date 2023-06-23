@@ -33,21 +33,20 @@ export default function Button({
         py-2
         text-sm
         font-semibold
-        text-black
+        text-white
+        border
+        border-white/30
+        hover:bg-white/10
         shadow-lg
-        hover:bg-blue-900
         focus-visible:outline
         focus-visible:outline-2
         focus-visible:outline-offset-2
-        focus-visible:outline-sky-400`,
-        disabled ? "bg-gray-500" : "bg-blue-600"
+        focus-visible:outline-yellow-400`
       )}
       {...props}
     >
-      {Icon && <Icon className="mr-2 h-4 w-4 text-black" aria-hidden="true" />}
+      {Icon && <Icon className="mr-2 h-4 w-4" aria-hidden="true" />}
       {text}
-      <span className="absolute inset-0 rounded-md bg-gradient-to-b from-white/80 to-white opacity-10 transition-opacity group-hover:opacity-30"></span>
-      <span className="absolute inset-0 rounded-md opacity-7.5 shadow-[inset_0_1px_1px_white] transition-opacity group-hover:opacity-30"></span>
     </button>
   );
 }
