@@ -75,7 +75,7 @@ export default function LeftSide() {
           </div>
           <div className="mx-auto px-4 sm:px-6 md:max-w-2xl md:py-4 lg:px-0">
             <h1 className="text-2xl font-bold leading-8 text-white">
-              Daily Dev News Fast!
+              Daily Dev News... Fast!
             </h1>
           </div>
           <p className="mt-3 text-lg font-medium leading-8 text-gray-200">
