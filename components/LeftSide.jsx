@@ -1,5 +1,4 @@
-import { Button } from "@components";
-import { RssIcon } from "@heroicons/react/20/solid";
+import { Button, Logo } from "@components";
 
 export default function LeftSide() {
   const openGitHub = () =>
@@ -60,7 +59,6 @@ export default function LeftSide() {
             mx-auto
             px-4
             pb-4
-            pt-10
             bg-black
             sm:px-6
             md:max-w-2xl
@@ -68,19 +66,25 @@ export default function LeftSide() {
             lg:min-h-full
             lg:flex-auto
             lg:px-8
-            lg:py-12
+            lg:pb-12
             xl:px-12"
       >
-        <div className="mt-10 text-center lg:mt-12 lg:text-left">
-          <div className="border-2 max-h-64 mx-auto aspect-square border-dotted border-white/20 rounded-full m-12 pl-8 pb-8 pt-4 pr-4 text-white/30">
-            <RssIcon />
+        <div className="text-center lg:text-left">
+          <div className="max-h-72 mx-auto aspect-square py-12 pl-4 pr-8 text-white/30">
+            <Logo />
           </div>
-          <p className="mt-3 text-lg font-medium leading-8 italic text-gray-200">
+          <div className="mx-auto px-4 sm:px-6 md:max-w-2xl md:py-4 lg:px-0">
+            <h1 className="text-2xl font-bold leading-8 text-white">
+              Daily Dev News Fast!
+            </h1>
+          </div>
+          <p className="mt-3 text-lg font-medium leading-8 text-gray-200">
             This app takes blog posts from several sources and summaries them
-            using AI to help guage which will be interesting to read next.
+            using open AI to help you guage which articles you should invest
+            your precios time on. next.
           </p>
-          <div className="w-full mt-8 justify-center flex">
-            <Button text="Fork This App" onClick={openGitHub} Icon={Icon} />
+          <div className="w-full mt-8 flex">
+            <Button text="Fork Me!" onClick={openGitHub} Icon={Icon} />
           </div>
         </div>
       </div>

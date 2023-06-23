@@ -45,7 +45,7 @@ export default async function getPostsFromBfD() {
       }
     }
 
-    return posts.slice(0, 5);
+    return posts.slice(0, 10);
   } catch (error) {
     throw { error: error.message };
   }

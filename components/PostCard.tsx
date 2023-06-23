@@ -88,8 +88,7 @@ export default function PostCard({ post, searchTerm }) {
                 text-sm
                 font-bold
                 leading-6
-                text-black
-                underline
+                text-blue-500
                 hover:text-blue-700
                 active:text-blue-900
                 cursor-pointer"
