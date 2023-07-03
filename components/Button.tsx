@@ -32,7 +32,8 @@ export default function Button({
         px-3
         py-2
         text-sm
-        font-semibold
+        font-bold
+        font-mono
         text-white
         border
         border-white/30

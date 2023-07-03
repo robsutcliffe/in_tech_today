@@ -6,20 +6,20 @@ export default function BulletPoints({ points }) {
   const regex = new RegExp(searchTerm, "gi");
 
   return (
-    <ul className="mt-1 text-base leading-7 text-slate-700">
+    <ul className="mt-2 text-base leading-6 text-slate-700">
       {points.map((point, key) => (
         <li key={key} className="mb-2">
-          <div
+          <span
             className="
-            w-4
-            h-4
-            -ml-6
+            w-3
+            h-3
+            -ml-5
             flex-shrink-0
             absolute
             border-4
-            border-yellow-400
+            border-yellow-200
             rounded-full
-            mt-1.5"
+            mt-2"
           />
 
           <span

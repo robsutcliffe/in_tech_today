@@ -12,31 +12,32 @@ export default function Search() {
         name="account-number"
         id="account-number"
         className="
-          px-2
+          px-4
           block
           w-full
-          rounded-md
-          shadow-sm
+          rounded-xl
           border-0
-          py-1.5
+          py-3
           pr-10
-          text-gray-900
-          ring-1
+          text-black
+          font-extrabold
+          ring-4
           ring-inset
-          ring-gray-300
-          placeholder:text-gray-400
+          ring-slate-300
+          placeholder:text-slate-400
           focus:outline-none
-          focus:ring-2
+          focus:ring-4
           focus:ring-inset
           focus:ring-yellow-400
-          sm:text-sm sm:leading-6"
+          sm:text-sm
+          sm:leading-6"
         placeholder="Search"
         value={searchTerm || ""}
         onChange={handleSearchChange}
       />
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4">
         <MagnifyingGlassIcon
-          className="h-5 w-5 text-gray-400"
+          className="h-5 w-5 text-slate-400"
           aria-hidden="true"
         />
       </div>

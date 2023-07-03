@@ -14,8 +14,6 @@ import {
 
 import { getTagId } from "@services/tags.service";
 
-export const config = {};
-
 export default async function handler(req, res) {
   try {
     const post = await getNextPost();

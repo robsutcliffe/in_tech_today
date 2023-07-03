@@ -24,7 +24,7 @@ export default function Home() {
         </Container>
 
         <EventAtEnd onEnd={handleLoadMore}>
-          <section className="divide-y divide-slate-100 lg:border-t lg:border-slate-100">
+          <section className="divide-y-4 divide-slate-50 lg:border-t-4 lg:border-b-4  lg:border-slate-50">
             <AnimatePresence>
               {loadedPosts?.map((post, postIdx) => (
                 <motion.article

@@ -15,7 +15,7 @@ export default function PostCard({ post }: PostCardType) {
     <article aria-labelledby={`post-${post.id}`} className="py-10 sm:py-12">
       <Container>
         <div className="flex flex-col items-start">
-          <div className="flex flex-col lg:flex-row justify-between w-full gap-2 mb-1">
+          <div className="flex flex-col lg:flex-row justify-between w-full gap-2 mb-2">
             <h3 className="font-mono text-sm grow leading-7 text-slate-500">
               {post.blog}
             </h3>
@@ -29,7 +29,7 @@ export default function PostCard({ post }: PostCardType) {
           </div>
           <h2
             id={`episode-${post.id}-title`}
-            className="mb-2 text-lg font-bold text-slate-900 hover:text-yellow-500"
+            className="mb-2 text-lg font-bold text-slate-800 hover:text-yellow-500"
           >
             <Link href={post.href} target="_blank">
               {post.title}
@@ -42,11 +42,13 @@ export default function PostCard({ post }: PostCardType) {
               target="_blank"
               className="
                 flex
+                font-mono
                 items-center
                 text-sm
                 font-bold
                 leading-6
-                text-black
+                tracking-wide
+                text-slate-800
                 hover:text-yellow-500
                 active:text-yellow-500
                 cursor-pointer"

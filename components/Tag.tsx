@@ -19,11 +19,12 @@ export default function Tag({ text, isNew = false }: TagType) {
         px-3
         text-xs
         font-medium
+        font-mono
         tracking-wider
       `,
         isNew || searchTerm?.toLowerCase() === text?.toLowerCase()
           ? "bg-yellow-300 text-black"
-          : "bg-gray-100 text-gray-800"
+          : "bg-slate-100 text-slate-800"
       )}
     >
       {text}
