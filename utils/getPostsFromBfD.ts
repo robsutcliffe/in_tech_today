@@ -1,4 +1,4 @@
-const puppeteer = require("puppeteer");
+import puppeteer from "puppeteer-core";
 import cheerio from "cheerio";
 import { Post } from "@models/post.model";
 const includeTags: string[] = [
@@ -15,7 +15,9 @@ const includeTags: string[] = [
 
 export default async function getPostsFromBfD() {
   try {
-    const browser = await puppeteer.launch({ headless: "new" });
+    const browser = await puppeteer.connect({
+      browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BLESS_TOKEN}`,
+    });
     const page = await browser.newPage();
     await page.goto("https://bloggingfordevs.com/trends/");
     await page.waitForSelector("#blog-rank-0", { visible: true });

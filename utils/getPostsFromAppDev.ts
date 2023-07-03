@@ -1,11 +1,13 @@
-const puppeteer = require("puppeteer");
+import puppeteer from "puppeteer-core";
 import axios from "axios";
 import cheerio from "cheerio";
 import { Post } from "@models/post.model";
 
 export default async function getPostsFromAppDev() {
   try {
-    const browser = await puppeteer.launch({ headless: "new" });
+    const browser = await puppeteer.connect({
+      browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BLESS_TOKEN}`,
+    });
     const page = await browser.newPage();
     await page.goto("https://app.daily.dev/discussed");
     await new Promise((r) => setTimeout(r, 1000));
