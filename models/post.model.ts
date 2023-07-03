@@ -5,7 +5,7 @@ export type Post = {
   title: string;
   blog: string;
   href: string;
-  tags: number[];
+  tags: string[];
   summary?: string[];
   created_at?: string;
   updated_at?: string;

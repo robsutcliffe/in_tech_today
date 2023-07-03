@@ -4,7 +4,7 @@ import { PostsContext } from "@context/posts.context";
 
 type TagType = {
   text: string;
-  isNew: boolean;
+  isNew?: boolean;
 };
 export default function Tag({ text, isNew = false }: TagType) {
   const { searchTerm } = useContext(PostsContext);
