@@ -66,18 +66,20 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100">
-        <div className="lg:max-w-4xl lg:px-8">
-          <div className="relative mt-2 rounded-md shadow-sm">
-            <input
-              type="text"
-              name="account-number"
-              id="account-number"
-              className="
+      <main>
+        <nav className="lg:px-8 sm:my-4 lg:my-8">
+          <div className="lg:max-w-4xl">
+            <div className="relative mx-auto px-14 sm:px-10 md:max-w-2xl md:px-4 lg:px-2">
+              <input
+                type="text"
+                name="account-number"
+                id="account-number"
+                className="
                 px-2
                 block
                 w-full
                 rounded-md
+                shadow-sm
                 border-0
                 py-1.5
                 pr-10
@@ -86,60 +88,64 @@ export default function Home() {
                 ring-inset
                 ring-gray-300
                 placeholder:text-gray-400
+                focus:outline-none
                 focus:ring-2
                 focus:ring-inset
-                focus:ring-indigo-600
+                focus:ring-yellow-500
                 sm:text-sm sm:leading-6"
-              placeholder="Search"
-              value={searchTerm || ""}
-              onChange={handleSearchChange}
-            />
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-              <MagnifyingGlassIcon
-                className="h-5 w-5 text-gray-400"
-                aria-hidden="true"
+                placeholder="Search"
+                value={searchTerm || ""}
+                onChange={handleSearchChange}
               />
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                <MagnifyingGlassIcon
+                  className="h-5 w-5 text-gray-400"
+                  aria-hidden="true"
+                />
+              </div>
             </div>
           </div>
-        </div>
+        </nav>
 
-        <AnimatePresence>
-          {loadedPosts?.map((post, postIdx) => (
-            <motion.div
-              key={post.href}
-              initial={{ opacity: 0, y: 100, scale: 0.97 }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                transition: {
-                  type: "spring",
-                  mass: 0.5,
-                  stiffness: 50,
-                  duration: 0.15,
-                  delay: 0.15 * (postIdx % 5),
-                  ease: "easeOut",
-                },
-              }}
-              exit={{
-                opacity: 0,
-                transition: { duration: 0.05 },
-              }}
-            >
-              <PostCard post={post} searchTerm={searchTerm} />
-            </motion.div>
-          ))}
-        </AnimatePresence>
+        <section className="divide-y divide-slate-100 lg:border-t lg:border-slate-100">
+          <AnimatePresence>
+            {loadedPosts?.map((post, postIdx) => (
+              <motion.article
+                key={post.href}
+                initial={{ opacity: 0, y: 100, scale: 0.97 }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  transition: {
+                    type: "spring",
+                    mass: 0.5,
+                    stiffness: 50,
+                    duration: 0.15,
+                    delay: 0.15 * (postIdx % 5),
+                    ease: "easeOut",
+                  },
+                }}
+                exit={{
+                  opacity: 0,
+                  transition: { duration: 0.05 },
+                }}
+              >
+                <PostCard post={post} searchTerm={searchTerm} />
+              </motion.article>
+            ))}
+          </AnimatePresence>
+        </section>
 
         {hasMorePosts && (
-          <div
+          <footer
             ref={bottomRef}
             className="my-12 w-full text-gray-700 text-center animate-pulse"
           >
             loading more...
-          </div>
+          </footer>
         )}
-      </div>
+      </main>
     </>
   );
 }

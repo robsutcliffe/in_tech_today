@@ -7,22 +7,19 @@ export default function BulletPoints({ points, searchTerm }) {
     <ul className="mt-1 text-base leading-7 text-slate-700">
       {points.map((point, key) => (
         <li key={key} className="mb-2">
-          <SparklesIcon
+          <div
             className="
-                  w-8
-                  h-8
-                  -ml-7
-                  -mt-2
-                  text-yellow-400
-                  flex-shrink-0
-                  absolute
-                  border-2
-                  border-dotted
-                  border-yellow-300
-                  rounded-full
-                  p-1 -
-                  -z-10"
+            w-4
+            h-4
+            -ml-6
+            flex-shrink-0
+            absolute
+            border-4
+            border-yellow-400
+            rounded-full
+            mt-1.5"
           />
+
           <span
             dangerouslySetInnerHTML={{
               __html: point.replace(
