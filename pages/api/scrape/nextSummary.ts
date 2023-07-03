@@ -14,9 +14,7 @@ import {
 
 import { getTagId } from "@services/tags.service";
 
-export const config = {
-  runtime: "nodejs18",
-};
+export const config = {};
 
 export default async function handler(req, res) {
   try {
