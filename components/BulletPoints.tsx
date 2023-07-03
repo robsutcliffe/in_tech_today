@@ -17,9 +17,9 @@ export default function BulletPoints({ points }) {
             flex-shrink-0
             absolute
             border-4
-            border-yellow-200
+            border-yellow-300
             rounded-full
-            mt-2"
+            mt-1.5"
           />
 
           <span

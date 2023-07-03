@@ -35,9 +35,9 @@ export default function Button({
         font-bold
         font-mono
         text-white
-        border
-        border-white/30
-        hover:bg-white/10
+        border-2
+        border-white/50
+        hover:border-white
         shadow-lg
         focus-visible:outline
         focus-visible:outline-2

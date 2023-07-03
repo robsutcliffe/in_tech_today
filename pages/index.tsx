@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { PostCard, Container, Search, EventAtEnd } from "@components";
+import { PostCard, Container, Search, EventAtEnd, FadeIn } from "@components";
 import { useContext } from "react";
 import { PostsContext } from "@context/posts.context";
 import { motion, AnimatePresence } from "framer-motion";
@@ -24,31 +24,14 @@ export default function Home() {
         </Container>
 
         <EventAtEnd onEnd={handleLoadMore}>
-          <section className="divide-y-4 divide-slate-50 lg:border-t-4 lg:border-b-4  lg:border-slate-50">
+          <section className="divide-y-4 divide-slate-50 lg:border-t-4 lg:border-slate-50">
             <AnimatePresence>
               {loadedPosts?.map((post, postIdx) => (
-                <motion.article
-                  key={post.href}
-                  initial={{ opacity: 0, y: 100 }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                      type: "spring",
-                      mass: 0.5,
-                      stiffness: 50,
-                      duration: 0.15,
-                      delay: 0.15 * (postIdx % 5),
-                      ease: "easeOut",
-                    },
-                  }}
-                  exit={{
-                    opacity: 0,
-                    transition: { duration: 0.05 },
-                  }}
-                >
-                  <PostCard post={post} />
-                </motion.article>
+                <article key={post.href} className="overflow-hidden">
+                  <FadeIn delay={0.15 * (postIdx % 5)}>
+                    <PostCard post={post} />
+                  </FadeIn>
+                </article>
               ))}
             </AnimatePresence>
           </section>

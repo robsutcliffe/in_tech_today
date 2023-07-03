@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Container, BulletPoints, Tag } from "@components";
 import isToday from "@utils/isToday";
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
 import { Post } from "@models/post.model";
 
 type PostCardType = {
@@ -46,15 +45,13 @@ export default function PostCard({ post }: PostCardType) {
                 items-center
                 text-sm
                 font-bold
-                leading-6
-                tracking-wide
-                text-slate-800
+                leading-5
+                text-slate-700
                 hover:text-yellow-500
                 active:text-yellow-500
                 cursor-pointer"
             >
-              READ FULL ARTICLE
-              <ArrowTopRightOnSquareIcon className="h-4 w-4 ml-1 -mt-0.5" />
+              Read Full Article
             </a>
           </div>
         </div>

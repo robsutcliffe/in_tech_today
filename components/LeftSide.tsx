@@ -1,4 +1,4 @@
-import { Button, Logo } from "@components";
+import { Button, Logo, FadeIn } from "@components";
 import React from "react";
 
 export default function LeftSide() {
@@ -75,19 +75,28 @@ export default function LeftSide() {
           <div className="max-h-72 mx-auto aspect-square py-12 pl-4 pr-8 text-white/30">
             <Logo />
           </div>
-          <div className="mx-auto px-4 sm:px-6 md:max-w-2xl md:py-4 lg:px-0">
-            <h1 className="text-2xl font-bold leading-8 text-white">
-              Daily Dev News... Fast!
-            </h1>
-          </div>
-          <p className="mt-3 text-lg font-medium leading-8 text-gray-200">
-            This app takes blog posts from several sources and summaries them
-            using Open AI to help you gauge which articles you should invest
-            your precious time on next.
-          </p>
-          <div className="w-full mt-8 flex">
-            <Button text="Fork Me!" onClick={openGitHub} Icon={Icon} />
-          </div>
+          <FadeIn delay={1.8}>
+            <div className="mx-auto px-4 sm:px-6 md:max-w-2xl md:py-4 lg:px-0">
+              <h1 className="text-2xl font-bold leading-8 text-white">
+                Daily Dev News... Fast!
+              </h1>
+            </div>
+          </FadeIn>
+          <FadeIn delay={2}>
+            <p className="mt-3 text-lg leading-7 text-gray-200">
+              <b className="font-bold pr-2">
+                This app takes blog posts from several sources and summaries
+                them
+              </b>
+              using Open AI to help you gauge which articles you should invest
+              your precious time on next.
+            </p>
+          </FadeIn>
+          <FadeIn delay={2.2}>
+            <div className="w-full mt-6 flex">
+              <Button text="Fork Me!" onClick={openGitHub} Icon={Icon} />
+            </div>
+          </FadeIn>
         </div>
       </div>
     </header>
