@@ -1,6 +1,6 @@
 const { Configuration, OpenAIApi } = require("openai");
 
-export default async function summarizeBlogPost(html) {
+export default async function summarizeBlogPost(html: string) {
   const apiKey = process.env.OPENAI_API_KEY;
   const configuration = new Configuration({
     apiKey,

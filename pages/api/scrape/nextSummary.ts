@@ -24,7 +24,7 @@ export default async function handler(req, res) {
       const { html } = await getBlogPost(post.href);
       const nextPost = { ...post, summary: [], tags: [] };
 
-      if (isMostlyEnglish(html) && html.length < 20000) {
+      if (html && isMostlyEnglish(html) && html.length < 20000) {
         const fullResponse = await summarise(html);
         const parts = fullResponse.content.split("#");
         nextPost.summary = parts[0]
@@ -55,6 +55,6 @@ export default async function handler(req, res) {
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error });
   }
 }

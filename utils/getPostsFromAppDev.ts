@@ -1,6 +1,8 @@
 const puppeteer = require("puppeteer");
 import axios from "axios";
 import cheerio from "cheerio";
+import { Post } from "@models/post.model";
+
 export default async function getPostsFromAppDev() {
   try {
     const browser = await puppeteer.launch({ headless: "new" });
@@ -12,7 +14,7 @@ export default async function getPostsFromAppDev() {
     const $ = cheerio.load(html);
 
     const postRow = $("article");
-    const posts = [];
+    const posts: Post[] = [];
     for (let i = 0; i < postRow.length; i++) {
       const el = postRow[i];
       let blog = $(el).find("div > a").attr("aria-label");

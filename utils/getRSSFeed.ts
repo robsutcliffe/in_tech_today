@@ -1,6 +1,7 @@
 import Parser from "rss-parser";
+import { Post } from "@models/post.model";
 
-const feeds = [
+const feeds: string[] = [
   "https://overreacted.io/rss.xml",
   "https://davidwalsh.name/feed",
   "https://jakearchibald.com/posts.rss",
@@ -18,7 +19,7 @@ const feeds = [
 const parser = new Parser();
 
 export default async function getRSSFeed() {
-  const posts = [];
+  const posts: Post[] = [];
   for (const url of feeds) {
     const feed = await parser.parseURL(url);
 

@@ -1,73 +1,31 @@
 import Link from "next/link";
-import { Container, BulletPoints } from "@components";
+import { Container, BulletPoints, Tag } from "@components";
+import isToday from "@utils/isToday";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
-import clsx from "clsx";
-function isToday(date) {
-  const date1 = new Date(date);
-  const date2 = new Date();
-  return (
-    date1.getFullYear() === date2.getFullYear() &&
-    date1.getMonth() === date2.getMonth() &&
-    date1.getDate() === date2.getDate()
-  );
-}
+import { Post } from "@models/post.model";
 
-export default function PostCard({ post, searchTerm }) {
+type PostCardType = {
+  post: Post;
+};
+
+export default function PostCard({ post }: PostCardType) {
   const isNew = isToday(post.created_at);
 
   return (
     <article aria-labelledby={`post-${post.id}`} className="py-10 sm:py-12">
       <Container>
         <div className="flex flex-col items-start">
-          <div className="flex flex-row justify-between w-full gap-2">
+          <div className="flex flex-col lg:flex-row justify-between w-full gap-2 mb-1">
             <h3 className="font-mono text-sm grow leading-7 text-slate-500">
               {post.blog}
             </h3>
-            {post.tags.map(
-              (tag, key) =>
-                tag && (
-                  <span
-                    key={`${post.id}-${key}`}
-                    className={clsx(
-                      `
-                  inline-flex
-                  items-center
-                  rounded-md
-                  px-2
-                  py-1
-                  text-xs
-                  font-medium
-                  ring-1
-                  ring-inset
-                  `,
-                      searchTerm?.toLowerCase() === tag?.toLowerCase()
-                        ? "bg-yellow-200 ring-yellow-400 text-black"
-                        : "text-gray-600 ring-gray-500/10"
-                    )}
-                  >
-                    {tag}
-                  </span>
-                )
-            )}
-            {isNew && (
-              <span
-                className="
-                  inline-flex
-                  bg-yellow-200
-                  items-center
-                  rounded-md
-                  px-2
-                  py-1
-                  text-xs
-                  font-medium
-                  text-black
-                  ring-1
-                  ring-inset
-                  ring-yellow-300"
-              >
-                New
-              </span>
-            )}
+            <div className="flex flex-row gap-2">
+              {post.tags.map(
+                (tag, key) =>
+                  tag && <Tag key={`${post.id}-${key}`} text={tag} />
+              )}
+              {isNew && <Tag isNew={true} text="New" />}
+            </div>
           </div>
           <h2
             id={`episode-${post.id}-title`}
@@ -77,7 +35,7 @@ export default function PostCard({ post, searchTerm }) {
               {post.title}
             </Link>
           </h2>
-          <BulletPoints points={post.summary} searchTerm={searchTerm} />
+          <BulletPoints points={post.summary} />
           <div className="mt-4 flex items-center gap-4">
             <a
               href={post.href}

@@ -1,6 +1,8 @@
-import { SparklesIcon } from "@heroicons/react/24/solid";
+import { useContext } from "react";
+import { PostsContext } from "@context/posts.context";
 
-export default function BulletPoints({ points, searchTerm }) {
+export default function BulletPoints({ points }) {
+  const { searchTerm } = useContext(PostsContext);
   const regex = new RegExp(searchTerm, "gi");
 
   return (

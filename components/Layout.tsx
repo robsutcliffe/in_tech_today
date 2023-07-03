@@ -1,5 +1,10 @@
 import { LeftSide } from "@components";
-export default function Layout({ children }) {
+import { ReactNode } from "react";
+
+type LayoutProps = {
+  children: ReactNode;
+};
+export default function Layout({ children }: LayoutProps) {
   return (
     <>
       <LeftSide />

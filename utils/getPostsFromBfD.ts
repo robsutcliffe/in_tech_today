@@ -1,6 +1,7 @@
 const puppeteer = require("puppeteer");
 import cheerio from "cheerio";
-const includeTags = [
+import { Post } from "@models/post.model";
+const includeTags: string[] = [
   "javascript",
   "web development",
   "css",
@@ -23,17 +24,15 @@ export default async function getPostsFromBfD() {
     const $ = cheerio.load(html);
 
     const postRow = $("div[id^='blog-rank-']");
-    const posts = [];
+    const posts: Post[] = [];
     for (let i = 0; i < postRow.length; i++) {
       const el = postRow[i];
-      let tags = [];
       let keep = true;
       let tagElement = $(el).find("div > a.css-inbofv");
 
       tagElement.each((idx, tagEl) => {
         const tag = $(tagEl).text().toLowerCase();
         if (!includeTags.includes(tag)) keep = false;
-        tags.push(tag);
       });
 
       if (keep) {
@@ -41,7 +40,7 @@ export default async function getPostsFromBfD() {
         let href = $(el).find("div > a.css-1ezvrbm").attr("href");
         let title = $(el).find("div > a.css-1ezvrbm").text();
 
-        posts.push({ tags, blog, title, href });
+        posts.push({ tags: [], blog, title, href });
       }
     }
 

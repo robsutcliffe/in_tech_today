@@ -1,4 +1,10 @@
-export default function Container({ children }) {
+import { ReactNode } from "react";
+
+type ContainerProps = {
+  children: ReactNode;
+};
+
+export default function Container({ children }: ContainerProps) {
   return (
     <div className="lg:px-8">
       <div className="lg:max-w-4xl">

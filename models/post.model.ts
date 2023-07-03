@@ -7,8 +7,8 @@ export type Post = {
   href: string;
   tags: number[];
   summary?: string[];
-  createdAt?: string;
-  updatedAt?: string;
+  created_at?: string;
+  updated_at?: string;
 };
 
 export function isValidPost(post: unknown): post is Post {

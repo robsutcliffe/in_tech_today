@@ -1,9 +1,10 @@
 import { Button, Logo } from "@components";
+import React from "react";
 
 export default function LeftSide() {
   const openGitHub = () =>
     window.open("https://github.com/robsutcliffe/in_tech_today", "_blank");
-  const Icon = ({ ...props }) => {
+  const Icon: React.FC = ({ ...props }) => {
     return (
       <svg
         viewBox="0 0 16 16"
@@ -15,6 +16,7 @@ export default function LeftSide() {
       </svg>
     );
   };
+
   return (
     <header
       className="

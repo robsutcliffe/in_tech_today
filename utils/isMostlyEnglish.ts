@@ -1,4 +1,4 @@
-export default function isMostlyEnglish(str) {
+export default function isMostlyEnglish(str: string): boolean {
   let englishCount = 0;
 
   for (let i = 0; i < str.length; i++) {
