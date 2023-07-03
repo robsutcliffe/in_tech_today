@@ -1,13 +1,6 @@
 import { sql } from "@vercel/postgres";
 import { Post, isValidPost } from "@models/post.model";
-export async function getPostsByDate(date: string): Promise<Post[]> {
-  const { rows }: { rows: Post[] } =
-    await sql`SELECT * from POSTS where updated_at=${date}`;
-  return rows;
-}
 
-// needs CREATE EXTENSION IF NOT EXISTS pg_trgm;
-// and CREATE EXTENSION fuzzystrmatch;
 export async function searchPosts(
   page: number = 0,
   searchTerm: string = ""
@@ -48,12 +41,6 @@ export async function getPosts(page: number = 0): Promise<Post[]> {
       `;
 
   return rows;
-}
-
-export async function checkPostUrl({ href }): Promise<boolean> {
-  const { rows }: { rows: Post[] } =
-    await sql`SELECT * from POSTS where href=${href}`;
-  return !!rows[0];
 }
 
 export async function addPosts(posts: Post[]) {

@@ -5,6 +5,8 @@ import { Post } from "@models/post.model";
 
 export default async function getPostsFromAppDev() {
   try {
+    // required browserless token
+    // current issue running chrome on vercel
     const browser = await puppeteer.connect({
       browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BLESS_TOKEN}`,
     });

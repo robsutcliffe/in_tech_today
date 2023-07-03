@@ -15,6 +15,8 @@ const includeTags: string[] = [
 
 export default async function getPostsFromBfD() {
   try {
+    // required browserless token
+    // current issue running chrome on vercel
     const browser = await puppeteer.connect({
       browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BLESS_TOKEN}`,
     });
