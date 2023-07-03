@@ -22,14 +22,12 @@
     "next-usequerystate": "^1.7.3",
     "node-readability": "^3.0.0",
     "openai": "^3.3.0",
-    "p-limit": "^4.0.0",
     "postcss-focus-visible": "^8.0.2",
     "puppeteer": "^20.7.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-intersection-observer": "^9.5.0",
-    "rss-parser": "^3.13.0",
-    "swr": "^2.1.5"
+    "rss-parser": "^3.13.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.7",

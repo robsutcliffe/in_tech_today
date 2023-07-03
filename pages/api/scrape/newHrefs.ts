@@ -1,6 +1,10 @@
 import { getPostsFromAppDEv, getRSSFeed, getPostsFromBfD } from "@utils";
 import { addPost, getAllHrefs } from "@services/holding.service";
 
+export const config = {
+  runtime: "nodejs18",
+};
+
 export default async function handler(req, res) {
   try {
     const rawPosts = [
