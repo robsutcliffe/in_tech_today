@@ -1,11 +1,15 @@
-export { default as PostCard } from "./PostCard";
-export { default as Container } from "./Container";
-export { default as LeftSide } from "./LeftSide";
-export { default as Button } from "./Button";
-export { default as BulletPoints } from "./BulletPoints";
-export { default as Logo } from "./Logo";
-export { default as Tag } from "./Tag";
-export { default as Search } from "./Search";
-export { default as EventAtEnd } from "./EventAtEnd";
-export { default as FadeIn } from "./FadeIn";
-export { default as TextHighlight } from "./TextHighlight";
+export { default as Container } from "./layouts/Container";
+export { default as LeftSide } from "./layouts/LeftSide";
+export { default as Layout } from "./layouts/Layout";
+export { default as PostCard } from "./layouts/PostCard";
+
+export { default as Button } from "./core/Button";
+export { default as BulletPoints } from "./core/BulletPoints";
+export { default as Tag } from "./core/Tag";
+export { default as Search } from "./core/Search";
+export { default as EventAtEnd } from "./core/EventAtEnd";
+export { default as FadeIn } from "./core/FadeIn";
+export { default as TextHighlight } from "./core/TextHighlight";
+
+export { default as Logo } from "./icons/Logo";
+export { default as SearchIcon } from "./icons/SearchIcon";

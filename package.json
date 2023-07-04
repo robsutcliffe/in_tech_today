@@ -9,8 +9,6 @@
   },
   "dependencies": {
     "@extractus/article-extractor": "^7.2.16",
-    "@headlessui/react": "^1.7.15",
-    "@heroicons/react": "^2.0.18",
     "@tailwindcss/typography": "^0.5.9",
     "@vercel/postgres": "^0.3.0",
     "axios": "^1.4.0",

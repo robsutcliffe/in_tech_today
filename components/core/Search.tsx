@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { PostsContext } from "@context/posts.context";
+import { SearchIcon } from "@components";
 
 export default function Search() {
   const { searchTerm, handleSearchChange } = useContext(PostsContext);
@@ -36,10 +36,7 @@ export default function Search() {
         onChange={handleSearchChange}
       />
       <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4">
-        <MagnifyingGlassIcon
-          className="h-5 w-5 text-slate-400"
-          aria-hidden="true"
-        />
+        <SearchIcon />
       </div>
     </div>
   );
