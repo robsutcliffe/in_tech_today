@@ -13,6 +13,10 @@ export default function Home() {
         <title>Fast Feed</title>
         <meta name="Fast Feed" content="Blog Post Summaries" />
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content="Summarized development blog posts everyday"
+        />
       </Head>
 
       <main>
