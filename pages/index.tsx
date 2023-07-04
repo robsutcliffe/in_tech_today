@@ -17,7 +17,7 @@ export default function Home() {
 
       <main>
         <Container>
-          <nav className="sm:my-4 lg:my-8">
+          <nav className="my-4 lg:my-8">
             <Search />
           </nav>
         </Container>

@@ -22,7 +22,9 @@ export default function Tag({ text, isNew = false }: TagType) {
         font-mono
         tracking-wider
       `,
-        isNew || searchTerm?.toLowerCase() === text?.toLowerCase()
+        isNew
+          ? "bg-slate-800 text-white"
+          : searchTerm?.toLowerCase() === text?.toLowerCase()
           ? "bg-yellow-300 text-black"
           : "bg-slate-100 text-slate-800"
       )}

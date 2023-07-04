@@ -16,12 +16,22 @@ export async function searchPosts(
         FROM posts p
           LEFT JOIN tags t
             ON t.id = ANY(p.tags) AND t.approved = true
-        WHERE similarity(summary::text, ${searchTerm}) * length(summary::text) / length(${searchTerm}) > 1
-          OR similarity(t.name, ${searchTerm}) > 0.3
-        GROUP BY p.id, summary
+        WHERE similarity(summary::text, ${searchTerm}) * (length(summary::text)/1000) / length(${searchTerm}) > 1
+           OR similarity(title, ${searchTerm}) > 0.15
+           OR similarity(blog, ${searchTerm}) > 0.2
+           OR EXISTS (
+              SELECT 1
+              FROM tags t2
+              WHERE t2.id = ANY(p.tags)
+                AND t2.approved = true
+                AND similarity(t2.name, ${searchTerm}) > 0.3
+            )
+        GROUP BY p.id, p.summary, p.title, p.blog, p.href, p.created_at
         ORDER BY
-          similarity(tags::text, ${searchTerm}) DESC,
-          similarity(summary::text, ${searchTerm}) * length(summary::text) DESC
+          ((similarity(tags::text, ${searchTerm})) * 7) +
+          (similarity(summary::text, ${searchTerm}) * 10) +
+          ((similarity(title::text, ${searchTerm})) * 2) +
+          similarity(blog::text, ${searchTerm}) DESC
         LIMIT 5
         OFFSET ${page * 5}
       `;

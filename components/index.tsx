@@ -8,3 +8,4 @@ export { default as Tag } from "./Tag";
 export { default as Search } from "./Search";
 export { default as EventAtEnd } from "./EventAtEnd";
 export { default as FadeIn } from "./FadeIn";
+export { default as TextHighlight } from "./TextHighlight";

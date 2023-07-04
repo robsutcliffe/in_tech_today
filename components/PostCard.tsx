@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Container, BulletPoints, Tag } from "@components";
+import { Container, BulletPoints, Tag, TextHighlight } from "@components";
 import isToday from "@utils/isToday";
 import { Post } from "@models/post.model";
 
@@ -16,7 +16,7 @@ export default function PostCard({ post }: PostCardType) {
         <div className="flex flex-col items-start">
           <div className="flex flex-col lg:flex-row justify-between w-full gap-2 mb-2">
             <h3 className="font-mono text-sm grow leading-7 text-slate-500">
-              {post.blog}
+              <TextHighlight text={post.blog} />
             </h3>
             <div className="flex flex-row gap-2">
               {post.tags.map(
@@ -31,7 +31,7 @@ export default function PostCard({ post }: PostCardType) {
             className="mb-2 text-lg font-bold text-slate-800 hover:text-yellow-500"
           >
             <Link href={post.href} target="_blank">
-              {post.title}
+              <TextHighlight text={post.title} />
             </Link>
           </h2>
           <BulletPoints points={post.summary} />

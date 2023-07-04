@@ -1,10 +1,6 @@
-import { useContext } from "react";
-import { PostsContext } from "@context/posts.context";
+import { TextHighlight } from "@components";
 
 export default function BulletPoints({ points }) {
-  const { searchTerm } = useContext(PostsContext);
-  const regex = new RegExp(searchTerm, "gi");
-
   return (
     <ul className="mt-2 text-base leading-6 text-slate-700">
       {points.map((point, key) => (
@@ -21,16 +17,7 @@ export default function BulletPoints({ points }) {
             rounded-full
             mt-1.5"
           />
-
-          <span
-            dangerouslySetInnerHTML={{
-              __html: point.replace(
-                regex,
-                (match) =>
-                  `<span style="background:#fef08a;color:#000;">${match}</span>`
-              ),
-            }}
-          />
+          <TextHighlight text={point} />
         </li>
       ))}
     </ul>

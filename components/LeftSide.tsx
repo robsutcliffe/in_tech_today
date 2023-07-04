@@ -93,7 +93,7 @@ export default function LeftSide() {
             </p>
           </FadeIn>
           <FadeIn delay={2.2}>
-            <div className="w-full mt-6 flex">
+            <div className="w-full mt-6 text-center lg:text-left">
               <Button text="Fork Me!" onClick={openGitHub} Icon={Icon} />
             </div>
           </FadeIn>
