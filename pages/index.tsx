@@ -12,6 +12,10 @@ export default function Home() {
       <Head>
         <title>Fast Feed</title>
         <meta name="Fast Feed" content="Blog Post Summaries" />
+        <meta
+          name="google-site-verification"
+          content="JAV84sKtYCBXd_7M2YollrvBQlOvSW5Thse7o6ysWzk"
+        />
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
