@@ -15,7 +15,10 @@ export default function Tag({ text, isNew = false }: TagType) {
         inline-flex
         items-center
         rounded
-        leading-7
+        py-2
+        leading-5
+        lg:leading-7
+        lg:py-0
         px-3
         text-xs
         font-medium

@@ -32,7 +32,7 @@ export default function Search() {
           sm:text-sm
           sm:leading-6"
         placeholder="Search"
-        value={searchTerm || ""}
+        defaultValue={searchTerm || ""}
         onChange={handleSearchChange}
       />
       <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4">
