@@ -25,14 +25,16 @@ export default async function getPostsFromAppDev() {
       let url = $(el).find("span > a").attr("href");
       let title = $(el).find("h3").text();
 
-      if (title && url && blog) {
+      const isChangelog = url?.includes("https://changelog.daily.dev");
+
+      if (title && url && blog && !isChangelog) {
         const response = await axios.get(url, { maxRedirects: 5 });
         const href = response.request.res.responseUrl;
         posts.push({ blog, title, href, tags: [] });
       }
     }
 
-    return posts.slice(0, 10);
+    return posts.slice(0, 15);
   } catch (error) {
     throw { error: error.message };
   }

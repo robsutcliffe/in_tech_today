@@ -45,5 +45,5 @@ export default async function getRSSFeed() {
       }
     }
   }
-  return posts.slice(0, 10);
+  return posts.slice(0, 15);
 }

@@ -1,3 +1,4 @@
+// sadly this site seems to have been left to die :(
 import puppeteer from "puppeteer-core";
 import cheerio from "cheerio";
 import { Post } from "@models/post.model";
@@ -47,7 +48,6 @@ export default async function getPostsFromBfD() {
         posts.push({ tags: [], blog, title, href });
       }
     }
-
     return posts.slice(0, 10);
   } catch (error) {
     throw { error: error.message };

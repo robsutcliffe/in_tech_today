@@ -1,11 +1,11 @@
 {
   "theme_color": "#facc14",
-  "background_color": "#ffffff",
+  "background_color": "#000000",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
   "name": "Fast Feed",
-  "short_name": "fast Feed",
+  "short_name": "Fast Feed",
   "description": "Summarized development blog posts everyday",
   "icons": [
     {
