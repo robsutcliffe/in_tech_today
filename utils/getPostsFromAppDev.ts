@@ -3,9 +3,18 @@ import axios from "axios";
 import cheerio from "cheerio";
 import { Post } from "@models/post.model";
 
-type Tab = "popular" | "discussed" | "upvoted";
+function getSourceBasedOnDayOfMonth() {
+  const dayOfMonth = new Date().getDate();
+  const position = dayOfMonth % 3 === 0 ? 0 : dayOfMonth % 3;
 
-export default async function getPostsFromAppDev(tab: Tab = "popular") {
+  return [
+    "https://app.daily.dev/popular",
+    "https://app.daily.dev/discussed",
+    "https://app.daily.dev/upvoted",
+  ][position];
+}
+
+export default async function getPostsFromAppDev() {
   try {
     // required browserless token
     // current issue running chrome on vercel
@@ -14,12 +23,7 @@ export default async function getPostsFromAppDev(tab: Tab = "popular") {
     });
     const page = await browser.newPage();
 
-    const url = {
-      popular: "https://app.daily.dev/popular",
-      discussed: "https://app.daily.dev/discussed",
-      upvoted: "https://app.daily.dev/upvoted",
-    }[tab];
-
+    const url = getSourceBasedOnDayOfMonth();
     await page.goto(url);
     await new Promise((r) => setTimeout(r, 1000));
     const html = await page.content();
@@ -43,7 +47,7 @@ export default async function getPostsFromAppDev(tab: Tab = "popular") {
       }
     }
 
-    return posts.slice(0, 10);
+    return posts.slice(0, 15);
   } catch (error) {
     throw { error: error.message };
   }
