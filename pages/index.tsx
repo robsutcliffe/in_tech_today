@@ -40,15 +40,14 @@ export default function Home() {
               </article>
             ))}
           </section>
-
-          {hasMorePosts && (
-            <Container>
-              <footer className="my-12 w-full text-gray-700 text-center animate-pulse">
-                loading...
-              </footer>
-            </Container>
-          )}
         </EventAtEnd>
+        {hasMorePosts && (
+          <Container>
+            <footer className="my-12 w-full text-gray-700 text-center animate-pulse">
+              loading...
+            </footer>
+          </Container>
+        )}
       </main>
     </>
   );

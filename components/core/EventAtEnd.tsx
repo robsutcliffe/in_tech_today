@@ -14,7 +14,7 @@ export default function EventAtEnd({ children, onEnd }: EventAtEndProps) {
     if (inView) {
       onEnd();
     }
-  }, [inView, onEnd]);
+  }, [inView]);
 
   return (
     <>

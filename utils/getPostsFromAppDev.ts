@@ -3,7 +3,9 @@ import axios from "axios";
 import cheerio from "cheerio";
 import { Post } from "@models/post.model";
 
-export default async function getPostsFromAppDev() {
+type Tab = "popular" | "discussed" | "upvoted";
+
+export default async function getPostsFromAppDev(tab: Tab = "popular") {
   try {
     // required browserless token
     // current issue running chrome on vercel
@@ -11,7 +13,14 @@ export default async function getPostsFromAppDev() {
       browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BLESS_TOKEN}`,
     });
     const page = await browser.newPage();
-    await page.goto("https://app.daily.dev/discussed");
+
+    const url = {
+      popular: "https://app.daily.dev/popular",
+      discussed: "https://app.daily.dev/discussed",
+      upvoted: "https://app.daily.dev/upvoted",
+    }[tab];
+
+    await page.goto(url);
     await new Promise((r) => setTimeout(r, 1000));
     const html = await page.content();
 
@@ -34,7 +43,7 @@ export default async function getPostsFromAppDev() {
       }
     }
 
-    return posts.slice(0, 15);
+    return posts.slice(0, 10);
   } catch (error) {
     throw { error: error.message };
   }
