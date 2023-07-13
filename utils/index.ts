@@ -5,3 +5,4 @@ export { default as getRSSFeed } from "./getRSSFeed";
 export { default as summarise } from "./summarise";
 export { default as isMostlyEnglish } from "./isMostlyEnglish";
 export { default as removeFirstHyphen } from "./removeFirstHyphen";
+export { default as openBrowser } from "./openBrowser";

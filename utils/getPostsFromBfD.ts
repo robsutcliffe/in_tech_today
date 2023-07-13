@@ -1,7 +1,7 @@
 // sadly this site seems to have been left to die :(
-import puppeteer from "puppeteer-core";
 import cheerio from "cheerio";
 import { Post } from "@models/post.model";
+import { openBrowser } from "@utils";
 const includeTags: string[] = [
   "javascript",
   "web development",
@@ -16,11 +16,7 @@ const includeTags: string[] = [
 
 export default async function getPostsFromBfD() {
   try {
-    // required browserless token
-    // current issue running chrome on vercel
-    const browser = await puppeteer.connect({
-      browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BLESS_TOKEN}`,
-    });
+    const browser = await openBrowser();
     const page = await browser.newPage();
     await page.goto("https://bloggingfordevs.com/trends/");
     await page.waitForSelector("#blog-rank-0", { visible: true });
