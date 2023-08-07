@@ -1,4 +1,3 @@
-import puppeteer from "puppeteer-core";
 import axios from "axios";
 import cheerio from "cheerio";
 import { Post } from "@models/post.model";

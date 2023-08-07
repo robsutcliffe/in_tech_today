@@ -6,3 +6,4 @@ export { default as summarise } from "./summarise";
 export { default as isMostlyEnglish } from "./isMostlyEnglish";
 export { default as removeFirstHyphen } from "./removeFirstHyphen";
 export { default as openBrowser } from "./openBrowser";
+export { default as getFromReddit } from "./getFromReddit";
