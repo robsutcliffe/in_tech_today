@@ -1,7 +1,6 @@
 import axios from "axios";
 import cheerio from "cheerio";
 import { Post } from "@models/post.model";
-import openBrowser from "@utils/openBrowser";
 
 function getSourceBasedOnDayOfMonth() {
   const dayOfMonth = new Date().getDate();
@@ -16,14 +15,17 @@ function getSourceBasedOnDayOfMonth() {
 
 export default async function getPostsFromAppDev() {
   try {
-    const browser = await openBrowser();
-    const page = await browser.newPage();
+    // const browser = await openBrowser();
+    // const page = await browser.newPage();
+    //
+    // const url = getSourceBasedOnDayOfMonth();
+    // await page.goto(url);
+    // await new Promise((r) => setTimeout(r, 1000));
+    // const html = await page.content();
 
     const url = getSourceBasedOnDayOfMonth();
-    await page.goto(url);
-    await new Promise((r) => setTimeout(r, 1000));
-    const html = await page.content();
-
+    const response = await fetch(url);
+    const html = await response.text();
     const $ = cheerio.load(html);
 
     const postRow = $("article");
