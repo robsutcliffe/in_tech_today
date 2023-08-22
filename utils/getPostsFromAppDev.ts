@@ -1,5 +1,6 @@
 import axios from "axios";
 import cheerio from "cheerio";
+import { Post } from "@models/post.model";
 import openBrowser from "@utils/openBrowser";
 
 function getSourceBasedOnDayOfMonth() {
@@ -15,8 +16,10 @@ function getSourceBasedOnDayOfMonth() {
 
 export default async function getPostsFromAppDev() {
   try {
-    const browser = await openBrowser();
-    const page = await browser.newPage();
+    // const browser = await openBrowser();
+    // const page = await browser.newPage();
+
+    const page = { goto: (s) => {}, content: async () => "" };
 
     const url = getSourceBasedOnDayOfMonth();
     await page.goto(url);
@@ -26,6 +29,7 @@ export default async function getPostsFromAppDev() {
     const $ = cheerio.load(html);
 
     const postRow = $("article");
+    const posts: Post[] = [];
     for (let i = 0; i < postRow.length; i++) {
       const el = postRow[i];
       let blog = $(el).find("div > a").attr("aria-label");
@@ -37,10 +41,11 @@ export default async function getPostsFromAppDev() {
       if (title && url && blog && !isChangelog) {
         const response = await axios.get(url, { maxRedirects: 5 });
         const href = response.request.res.responseUrl;
+        posts.push({ blog, title, href, tags: [] });
       }
     }
 
-    return [];
+    return posts.slice(0, 15);
   } catch (error) {
     throw { error: error.message };
   }
