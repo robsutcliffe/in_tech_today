@@ -1,7 +1,7 @@
 import axios from "axios";
 import cheerio from "cheerio";
 import { Post } from "@models/post.model";
-import { openBrowser } from "@utils";
+import openBrowser from "@utils/openBrowser";
 
 function getSourceBasedOnDayOfMonth() {
   const dayOfMonth = new Date().getDate();
