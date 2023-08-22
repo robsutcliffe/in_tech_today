@@ -16,10 +16,8 @@ function getSourceBasedOnDayOfMonth() {
 
 export default async function getPostsFromAppDev() {
   try {
-    // const browser = await openBrowser();
-    // const page = await browser.newPage();
-
-    const page = { goto: (s) => {}, content: async () => "" };
+    const browser = await openBrowser();
+    const page = await browser.newPage();
 
     const url = getSourceBasedOnDayOfMonth();
     await page.goto(url);
