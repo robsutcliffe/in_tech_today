@@ -1,5 +1,4 @@
 import axios from "axios";
-import cheerio from "cheerio";
 import { Post } from "@models/post.model";
 import openBrowser from "@utils/openBrowser";
 
@@ -19,20 +18,22 @@ export default async function getPostsFromAppDev() {
     const browser = await openBrowser();
     const page = await browser.newPage();
 
-    const url = getSourceBasedOnDayOfMonth();
-    await page.goto(url);
-    await new Promise((r) => setTimeout(r, 1000));
-    const html = await page.content();
+    // const url = getSourceBasedOnDayOfMonth();
+    // await page.goto(url);
+    // await new Promise((r) => setTimeout(r, 1000));
+    // const html = await page.content();
+    //
+    // const $ = cheerio.load(html);
+    //
+    // const postRow = $("article");
+    const postRow = []
 
-    const $ = cheerio.load(html);
-
-    const postRow = $("article");
     const posts: Post[] = [];
     for (let i = 0; i < postRow.length; i++) {
       const el = postRow[i];
-      let blog = $(el).find("div > a").attr("aria-label");
-      let url = $(el).find("span > a").attr("href");
-      let title = $(el).find("h3").text();
+      let blog = ''//$(el).find("div > a").attr("aria-label");
+      let url = ''//$(el).find("span > a").attr("href");
+      let title = ''//$(el).find("h3").text();
 
       const isChangelog = url?.includes("https://changelog.daily.dev");
 
