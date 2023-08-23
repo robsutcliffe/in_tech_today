@@ -18,5 +18,6 @@ export default async function summarizeBlogPost(html: string) {
       },
     ],
   });
+
   return completion.data.choices[0].message;
 }
