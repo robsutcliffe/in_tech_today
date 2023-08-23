@@ -6,9 +6,6 @@ const withPWA = require("next-pwa")({
 
 module.exports = withPWA({
   reactStrictMode: true,
-  images: {
-    unoptimized: true,
-  },
   webpack(config) {
     config.resolve.extensions.push(".ts", ".tsx");
     return config;
