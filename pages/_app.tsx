@@ -4,6 +4,10 @@ import { Layout } from "@components";
 import { PostsContextProvider } from "@context/posts.context";
 import "@styles/globals.css";
 
+import { Amplify } from "aws-amplify";
+import awsExports from "../src/aws-exports";
+Amplify.configure({ ...awsExports });
+
 const MyApp: React.FunctionComponent<AppProps> = ({ Component, pageProps }) => {
   return (
     <PostsContextProvider>
