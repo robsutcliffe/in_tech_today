@@ -2,6 +2,10 @@ import { getPosts, searchPosts } from "@services/post.service";
 import { NextRequest } from "next/server";
 import { Post } from "@models/post.model";
 
+import { Amplify } from "aws-amplify";
+import awsExports from "../../../src/aws-exports";
+Amplify.configure({ ...awsExports });
+
 export const config = {
   runtime: "edge",
 };
