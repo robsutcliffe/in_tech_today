@@ -66,14 +66,6 @@ const PostsContextProvider = (props) => {
     }
   };
 
-  const posts = {
-    loadedPosts,
-    hasMorePosts,
-    searchTerm,
-    handleLoadMore,
-    handleSearchChange,
-  };
-
   const postsContextValue: PostsContextType = {
     loadedPosts,
     hasMorePosts,
