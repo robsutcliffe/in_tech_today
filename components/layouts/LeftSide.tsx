@@ -1,7 +1,7 @@
 import { Button, Logo, FadeIn } from "@components";
 import React from "react";
 
-export default function LeftSide() {
+export default React.memo(function LeftSide() {
   const openGitHub = () =>
     window.open("https://github.com/robsutcliffe/in_tech_today", "_blank");
   const Icon: React.FC = ({ ...props }) => {
@@ -101,4 +101,4 @@ export default function LeftSide() {
       </div>
     </header>
   );
-}
+});

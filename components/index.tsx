@@ -2,6 +2,7 @@ export { default as Container } from "./layouts/Container";
 export { default as LeftSide } from "./layouts/LeftSide";
 export { default as Layout } from "./layouts/Layout";
 export { default as PostCard } from "./layouts/PostCard";
+export { default as Posts } from "./layouts/Posts";
 
 export { default as Button } from "./core/Button";
 export { default as BulletPoints } from "./core/BulletPoints";

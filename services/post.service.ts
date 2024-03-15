@@ -49,7 +49,6 @@ export async function getPosts(page: number = 0): Promise<Post[]> {
         LIMIT 5 
         OFFSET ${page * 5}
       `;
-
   return rows;
 }
 
