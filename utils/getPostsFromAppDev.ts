@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer-core";
 import axios from "axios";
-import cheerio from "cheerio";
+import * as cheerio from "cheerio";
 import { Post } from "@models/post.model";
 
 function getSourceBasedOnDayOfMonth() {
@@ -24,13 +24,15 @@ export default async function getPostsFromAppDev() {
     const page = await browser.newPage();
 
     const url = getSourceBasedOnDayOfMonth();
-    await page.goto(url);
-    await new Promise((r) => setTimeout(r, 1000));
+
+    await page.goto(url, { waitUntil: "networkidle2" });
+    await page.waitForSelector("article", { timeout: 60000 });
     const html = await page.content();
 
     const $ = cheerio.load(html);
 
     const postRow = $("article");
+
     const posts: Post[] = [];
     for (let i = 0; i < postRow.length; i++) {
       const el = postRow[i];

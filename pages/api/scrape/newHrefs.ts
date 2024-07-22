@@ -1,9 +1,9 @@
-import { getPostsFromAppDEv, getRSSFeed } from "@utils";
+import { getRSSFeed } from "@utils";
 import { addPost, getAllHrefs } from "@services/holding.service";
 
 export default async function handler(req, res) {
   try {
-    const rawPosts = [...(await getRSSFeed()), ...(await getPostsFromAppDEv())];
+    const rawPosts = [...(await getRSSFeed())];
 
     const allHrefs = await getAllHrefs();
     const filter = (post) => !allHrefs.includes(post.href);
