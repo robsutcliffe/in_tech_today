@@ -7,6 +7,7 @@ const feeds: string[] = [
   "https://jakearchibald.com/posts.rss",
   "https://www.joshwcomeau.com/rss.xml",
   "https://jvns.ca/atom.xml",
+  "https://flaviocopes.com/rss.xml",
   "https://kentcdodds.com/blog/rss.xml",
   "https://blog.maximeheckel.com/rss.xml",
   "https://www.robinwieruch.de/index.xml",
@@ -14,6 +15,8 @@ const feeds: string[] = [
   "https://www.swyx.io/rss.xml",
   "http://www.effectiveengineer.com/atom.xml",
   "https://blog.pragmaticengineer.com/rss/",
+  "https://coryrylan.com/feed.xml",
+  "https://simpleprogrammer.com/feed/",
 ];
 
 const parser = new Parser();
