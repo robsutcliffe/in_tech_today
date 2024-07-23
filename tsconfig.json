@@ -9,7 +9,6 @@
     "skipLibCheck": true,
     "strict": false,
     "forceConsistentCasingInFileNames": true,
-    "types": ["node", "puppeteer-core"],
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,
